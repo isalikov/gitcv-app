@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl'
 import { useLocale } from '@app/store/hooks'
 
 import css from './App.sass'
-import { Demo } from './routes'
+import { Auth, Home } from './routes'
 
 const App: React.FC = () => {
     const { locale, messages } = useLocale()
@@ -14,7 +14,8 @@ const App: React.FC = () => {
         <IntlProvider locale={locale} messages={messages}>
             <div className={css.container}>
                 <Routes>
-                    <Route path="/" element={<Demo />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/auth" element={<Auth />} />
                 </Routes>
             </div>
         </IntlProvider>

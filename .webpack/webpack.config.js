@@ -11,10 +11,15 @@ const options = {
     mode: 'none',
     resolve: {
         alias: {
-            '@src': path.resolve(__dirname, '../src'),
+            '@api': path.resolve(__dirname, '../api'),
             '@app': path.resolve(__dirname, '../src/app'),
+            '@hooks': path.resolve(__dirname, '../src/hooks'),
+            '@i18': path.resolve(__dirname, '../src/i18'),
+            '@interfaces': path.resolve(__dirname, '../src/interfaces'),
             '@lib': path.resolve(__dirname, '../src/lib'),
+            '@services': path.resolve(__dirname, '../src/services'),
             '@typings': path.resolve(__dirname, '../src/typings'),
+            '@src': path.resolve(__dirname, '../src'),
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.html'],
         modules: ['node_modules', 'src'],

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { I18, Locale } from '@typings/i18'
 
-import en from '@app/i18/en'
+import en from '@i18/en'
 
 import { EnvAction, EnvActionType } from '@app/store/reducers/env'
 import { ReduxState } from '@app/store'

@@ -2,10 +2,14 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from './App'
-import store from './store'
+import { IUser } from '@interfaces/User'
 
-const bootstrap = () => {
+import App from './App'
+import createStore from './store'
+
+const bootstrap = (user: IUser | null) => {
+    const store = createStore(user)
+
     render(
         <Provider store={store}>
             <BrowserRouter>

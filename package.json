@@ -1,8 +1,7 @@
 {
-    "name": "react-typescript",
-    "version": "1.0.0",
-    "description": "React Typescript",
-    "license": "MIT",
+    "name": "gitcv-app",
+    "version": "0.0.1",
+    "description": "gitcv app layer",
     "author": {
         "name": "Iakov Salikov",
         "email": "salikovpro@gmail.com"

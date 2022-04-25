@@ -1,3 +1,4 @@
 import AppLoader from './app'
+import { ping } from './api'
 
-AppLoader()
+ping().then(AppLoader)

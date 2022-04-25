@@ -1,5 +1,5 @@
 const translations = {
-    hello_world: 'Hello World',
+    login: 'Login',
 }
 
 export default translations

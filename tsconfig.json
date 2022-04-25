@@ -10,9 +10,15 @@
         "typeRoots": ["./node_modules/@types", "./src/typings"],
         "baseUrl": ".",
         "paths": {
+            "@api/*": ["src/api/*"],
             "@app/*": ["src/app/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@i18/*": ["src/i18/*"],
+            "@interfaces/*": ["src/interfaces/*"],
             "@lib/*": ["src/lib/*"],
-            "@typings/*": ["src/typings/*"]
+            "@services/*": ["src/services/*"],
+            "@typings/*": ["src/typings/*"],
+            "@src/*": ["src/*"]
         }
     },
     "exclude": ["node_modules", "dist"]

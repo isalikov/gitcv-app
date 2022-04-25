@@ -1,5 +1,7 @@
 import { combineReducers, compose, createStore } from 'redux'
 
+import { IUser } from '@interfaces/User'
+
 import env, { envState, EnvState } from './reducers/env'
 
 export interface ReduxState {
@@ -18,4 +20,8 @@ const composeEnhancers =
 const enhancers = composeEnhancers()
 const reducers = combineReducers<ReduxState>({ env })
 
-export default createStore(reducers, initialState, enhancers)
+export default (user: IUser | null) => {
+    console.log(user)
+
+    return createStore(reducers, initialState, enhancers)
+}

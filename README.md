@@ -1,4 +1,4 @@
-# react-typescript
+# gitcv-app
 
 ### Requirements
 
@@ -14,5 +14,5 @@
 
 ### Usage
 
--   `yarn dev` will serve development build at :8000
+-   `yarn dev` will serve development build at :8080
 -   `NODE_ENV=production yarn dist` will make production build at `./dist` folder
