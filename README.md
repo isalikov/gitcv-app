@@ -1,0 +1,18 @@
+# react-typescript
+
+### Requirements
+
+- [Nodejs ^16](https://nodejs.org/en/)
+- [Yarn ^1.22](https://yarnpkg.com/)
+
+### Features
+
+- React (react@17, react-router-dom@6, react-intl@5, react-redux@7)
+- SASS, CSS Modules
+- ESLint (Airbnb) / prettier / husky
+- Webpack setup (dev server, hmr, aliases, code splitting)
+
+### Usage
+
+-   `yarn dev` will serve development build at :8000
+-   `NODE_ENV=production yarn dist` will make production build at `./dist` folder

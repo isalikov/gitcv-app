@@ -1,0 +1,124 @@
+{
+    "name": "react-typescript",
+    "version": "1.0.0",
+    "description": "React Typescript",
+    "license": "MIT",
+    "author": {
+        "name": "Iakov Salikov",
+        "email": "salikovpro@gmail.com"
+    },
+    "scripts": {
+        "dist": "webpack -c .webpack/webpack.config",
+        "dev": "webpack serve -c .webpack/webpack.config",
+        "prepare": "husky install"
+    },
+    "eslintIgnore": [
+        "./dist",
+        "./node_modules",
+        "./src/assets"
+    ],
+    "eslintConfig": {
+        "plugins": [
+            "prettier"
+        ],
+        "extends": [
+            "airbnb",
+            "airbnb-typescript",
+            "plugin:prettier/recommended"
+        ],
+        "parserOptions": {
+            "project": "./tsconfig.json"
+        },
+        "rules": {
+            "import/prefer-default-export": [
+                "off"
+            ],
+            "import/extensions": [
+                "off"
+            ],
+            "react/require-default-props": [
+                "off"
+            ],
+            "react/react-in-jsx-scope": [
+                "off"
+            ],
+            "react/prop-types": [
+                "off"
+            ],
+            "react/function-component-definition": [
+                "off"
+            ],
+            "@typescript-eslint/naming-convention": [
+                "off"
+            ]
+        }
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 80
+    },
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env"
+            ],
+            [
+                "@babel/preset-react",
+                {
+                    "runtime": "automatic"
+                }
+            ],
+            [
+                "@babel/preset-typescript"
+            ]
+        ]
+    },
+    "dependencies": {
+        "@babel/core": "^7.17.5",
+        "@babel/polyfill": "^7.12.1",
+        "@babel/preset-env": "^7.16.11",
+        "@babel/preset-react": "^7.16.7",
+        "@babel/preset-typescript": "^7.16.7",
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+        "@typescript-eslint/eslint-plugin": "^5.12.0",
+        "@typescript-eslint/parser": "^5.12.0",
+        "@webpack-cli/serve": "^1.6.1",
+        "autoprefixer": "^10.4.2",
+        "babel-loader": "^8.2.3",
+        "copy-webpack-plugin": "^10.2.4",
+        "css-loader": "^6.6.0",
+        "eslint": "^8.9.0",
+        "eslint-config-airbnb": "19.0.4",
+        "eslint-config-airbnb-typescript": "^16.1.0",
+        "eslint-config-prettier": "^8.4.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "html-webpack-plugin": "^5.5.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.3.4",
+        "prettier": "2.5.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-intl": "^5.24.6",
+        "react-redux": "^7.2.6",
+        "react-refresh": "^0.11.0",
+        "react-router-dom": "^6.2.1",
+        "redux": "^4.1.2",
+        "sass": "^1.49.8",
+        "sass-loader": "^12.6.0",
+        "style-loader": "^3.3.1",
+        "terser-webpack-plugin": "^5.3.1",
+        "to-string-loader": "^1.2.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.69.1",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4",
+        "webpack-merge": "^5.8.0"
+    }
+}
