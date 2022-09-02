@@ -11,8 +11,7 @@ const options = {
     mode: 'none',
     resolve: {
         alias: {
-            '@app': path.resolve(__dirname, '../src/app'),
-            '@lib': path.resolve(__dirname, '../src/lib'),
+            '@gitcv': path.resolve(__dirname, '../src'),
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.html'],
         modules: ['node_modules', 'src'],
@@ -21,7 +20,7 @@ const options = {
         modules: ['node_modules', 'src'],
     },
     entry: {
-        main: ['@babel/polyfill', './src/main.ts'],
+        main: ['@babel/polyfill', './src/main.tsx'],
     },
     module: {
         rules: [

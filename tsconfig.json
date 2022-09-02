@@ -6,12 +6,12 @@
         "jsx": "react-jsx",
         "lib": ["es2019", "dom"],
         "module": "commonjs",
+        "types": ["node"],
         "allowSyntheticDefaultImports": true,
-        "typeRoots": ["./src/typings"],
+        "typeRoots": ["./src/types"],
         "baseUrl": ".",
         "paths": {
-            "@app/*": ["src/app/*"],
-            "@lib/*": ["src/lib/*"]
+            "@gitcv/*": ["src/*"]
         }
     },
     "exclude": ["node_modules", "dist"]
