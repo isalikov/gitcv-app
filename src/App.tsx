@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { useLocale } from '@gitcv/hooks'
 
-import { Home, Profile, Settings } from './routes'
+import { AuthHandler, Home, Profile, Settings } from './routes'
 
 const App = () => {
     const { locale, messages } = useLocale()
@@ -14,6 +14,7 @@ const App = () => {
         <IntlProvider locale={locale} messages={messages}>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/auth/:token" element={<AuthHandler />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/:cvtag" element={<Profile />} />
             </Routes>

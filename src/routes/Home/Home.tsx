@@ -12,7 +12,9 @@ const Home = () => {
 
     return (
         <div className={styles.container}>
-            <Button>Login</Button>
+            <a href="http://localhost:3000/github/oauth">
+                <Button>Login</Button>
+            </a>
         </div>
     )
 }
