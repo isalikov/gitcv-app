@@ -3,25 +3,22 @@ import React from 'react'
 import { IntlProvider } from 'react-intl'
 import { Route, Routes } from 'react-router-dom'
 
-import { useAccount, useLocale } from '@gitcv/hooks'
+import { useLocale } from '@gitcv/hooks'
 
-import css from './App.scss'
-import { Auth, Home, Profile } from './routes'
+import { Home } from './routes/Home'
+
+import styles from './styles.scss'
 
 const App: React.FC = () => {
     const { locale, messages } = useLocale()
-    const { fetchStatus } = useAccount()
 
     return (
         <IntlProvider locale={locale} messages={messages}>
-            <div className={css.container}>
+            <div className={styles.container}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route
-                        path="/profile"
-                        element={<Profile fetchStatus={fetchStatus} />}
-                    />
+                    <Route path="/settings" element={<div>settings</div>} />
+                    <Route path="/:cvtag" element={<div>cvtag</div>} />
                 </Routes>
             </div>
         </IntlProvider>

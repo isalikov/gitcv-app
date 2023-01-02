@@ -1,30 +1,14 @@
-import React from 'react'
-
 import { useIntl } from 'react-intl'
 
-import { Page } from '@gitcv/lib/components'
+import { useTitle } from '@gitcv/hooks'
 
-import css from './Home.scss'
+import styles from './styles.scss'
 
-const Home: React.FC = () => {
+const Home = () => {
     const intl = useIntl()
+    useTitle(intl.formatMessage({ id: 'home.title' }))
 
-    const title = intl.formatMessage({ id: 'home.title' })
-    document.title = title
-
-    return (
-        <Page className={css.container} title={title}>
-            <span>{title}</span>
-
-            <div className={css.actions}>
-                <a href="http://localhost:3000/github/oauth">
-                    <button type="button">
-                        {intl.formatMessage({ id: 'home.login' })}
-                    </button>
-                </a>
-            </div>
-        </Page>
-    )
+    return <div className={styles.container}>Home</div>
 }
 
 export default Home
