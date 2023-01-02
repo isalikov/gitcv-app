@@ -12,7 +12,7 @@ const Home = () => {
 
     return (
         <div className={styles.container}>
-            <a href="http://localhost:3000/github/oauth">
+            <a href={process.env.OAUTH_URL}>
                 <Button>Login</Button>
             </a>
         </div>

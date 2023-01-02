@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import env from './env'
+import user from './user'
 
 export const store = configureStore({
     reducer: {
         env,
+        user,
     },
 })
 

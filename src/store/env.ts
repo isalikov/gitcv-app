@@ -10,7 +10,10 @@ const initialState: EnvState = {
     locale: Locale.en,
 }
 
-const onSetLocaleAction = (state: EnvState, action: PayloadAction<Locale>) => {
+const onSetLocaleAction = (
+    state: EnvState,
+    action: PayloadAction<Locale>
+): EnvState => {
     return {
         ...state,
         locale: action.payload,
