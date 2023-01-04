@@ -2,12 +2,15 @@ import { useEffect } from 'react'
 
 import { useIntl } from 'react-intl'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import { useTitle } from '@gitcv/hooks'
+import { Loading } from '@gitcv/lib'
 import { RootState } from '@gitcv/store'
 import { UserState } from '@gitcv/store/user'
 
+import { Navigation } from './components'
+import { CV, Dashboard, Privacy } from './routes'
 import styles from './styles.scss'
 
 const Settings = () => {
@@ -24,10 +27,20 @@ const Settings = () => {
     }, [user.pending, user.status])
 
     if (user.pending) {
-        return <div>Loading ...</div>
+        return <Loading />
     }
 
-    return <div className={styles.container}>Settings</div>
+    return (
+        <div className={styles.container}>
+            <Navigation />
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/cv" element={<CV />} />
+                <Route path="/cv/:cvtag" element={<CV />} />
+            </Routes>
+        </div>
+    )
 }
 
 export default Settings

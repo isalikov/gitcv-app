@@ -1,6 +1,6 @@
 import './styles.scss'
 
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 
 import { AxiosError } from 'axios'
 import { IntlProvider } from 'react-intl'
@@ -16,7 +16,10 @@ import {
     userFetchingStart,
 } from '@gitcv/store/user'
 
-import { AuthHandler, Home, Profile, Settings } from './routes'
+const AuthHandler = lazy(() => import('./routes/AuthHandler/AuthHandler'))
+const Home = lazy(() => import('./routes/Home/Home'))
+const Profile = lazy(() => import('./routes/Profile/Profile'))
+const Settings = lazy(() => import('./routes/Settings/Settings'))
 
 const App = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -44,7 +47,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/auth/:token" element={<AuthHandler />} />
-                <Route path="/settings" element={<Settings />} />
+                <Route path="/settings/*" element={<Settings />} />
                 <Route path="/:cvtag" element={<Profile />} />
             </Routes>
         </IntlProvider>
