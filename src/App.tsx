@@ -1,4 +1,4 @@
-import './styles.scss'
+import 'rsuite/dist/rsuite.min.css'
 
 import { lazy, useEffect } from 'react'
 

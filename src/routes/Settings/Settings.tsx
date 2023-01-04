@@ -4,8 +4,9 @@ import { useIntl } from 'react-intl'
 import { useSelector } from 'react-redux'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
+import { Loader } from 'rsuite'
+
 import { useTitle } from '@gitcv/hooks'
-import { Loading } from '@gitcv/lib'
 import { RootState } from '@gitcv/store'
 import { UserState } from '@gitcv/store/user'
 
@@ -27,7 +28,7 @@ const Settings = () => {
     }, [user.pending, user.status])
 
     if (user.pending) {
-        return <Loading />
+        return <Loader center />
     }
 
     return (

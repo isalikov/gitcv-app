@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl'
 
-import { useTitle } from '@gitcv/hooks'
+import { Button } from 'rsuite'
 
-import { Button } from '@gitcv/lib'
+import { useTitle } from '@gitcv/hooks'
 
 import styles from './styles.scss'
 
@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <a href={process.env.OAUTH_URL}>
-                <Button>Login</Button>
+                <Button appearance="primary">Login</Button>
             </a>
         </div>
     )

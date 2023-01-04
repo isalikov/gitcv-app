@@ -1,6 +1,9 @@
+import ShieldIcon from '@rsuite/icons/Shield'
+import DashboardIcon from '@rsuite/icons/legacy/Dashboard'
 import { useSelector } from 'react-redux'
 
 import { NavLink } from 'react-router-dom'
+import { Sidenav, Nav } from 'rsuite'
 
 import { RootState } from '@gitcv/store'
 import { UserState } from '@gitcv/store/user'
@@ -22,15 +25,19 @@ const Navigation = () => {
                 <span className={styles.name}>{user?.login}</span>
             </div>
 
-            <div className={styles.nav}>
-                <NavLink to="/settings" className={styles.navItem}>
-                    Dashboard
-                </NavLink>
+            <Sidenav>
+                <Sidenav.Body>
+                    <Nav activeKey="1">
+                        <Nav.Item eventKey="1" icon={<DashboardIcon />}>
+                            <NavLink to="/settings">Dashboard</NavLink>
+                        </Nav.Item>
 
-                <NavLink to="/settings/privacy" className={styles.navItem}>
-                    Privacy
-                </NavLink>
-            </div>
+                        <Nav.Item eventKey="2" icon={<ShieldIcon />}>
+                            <NavLink to="/settings/privacy">Privacy</NavLink>
+                        </Nav.Item>
+                    </Nav>
+                </Sidenav.Body>
+            </Sidenav>
         </div>
     )
 }
