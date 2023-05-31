@@ -7,8 +7,8 @@ import { IntlProvider } from 'react-intl'
 import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
+import { fetchAuthorizedUser } from '@gitcv/api'
 import { useLocale } from '@gitcv/hooks'
-import { fetchAuthorizedUser } from '@gitcv/services/api'
 import { AppDispatch } from '@gitcv/store'
 import {
     userFetchingSucceed,

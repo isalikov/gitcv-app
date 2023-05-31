@@ -1,6 +1,5 @@
+import { User } from '@isalikov/gitcv-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-import { User } from '@gitcv/types/models'
 
 export type UserState = {
     pending: boolean

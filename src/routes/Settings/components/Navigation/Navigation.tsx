@@ -22,7 +22,7 @@ const Navigation = () => {
                     className={styles.photo}
                 />
 
-                <span className={styles.name}>{user?.login}</span>
+                <span className={styles.name}>{user?.name}</span>
             </div>
 
             <Sidenav>
