@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { useAuthRedirect } from '@gitcv/hooks'
+import { useNavigate, useParams } from 'react-router-dom'
 
-type Props = {}
+const Auth = () => {
+    const navigate = useNavigate()
+    const { token } = useParams()
 
-const Auth: React.FC<Props> = () => {
-    useAuthRedirect()
+    useEffect(() => {
+        if (token) {
+            localStorage.setItem('session', token)
+            window.location.replace('/')
+        } else {
+            navigate('/', { replace: true })
+        }
+    }, [token])
 
     return <div />
 }

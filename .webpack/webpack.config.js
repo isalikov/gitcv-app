@@ -39,39 +39,6 @@ const options = {
                     },
                 ],
             },
-            {
-                test: /\.scss/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                exportLocalsConvention: 'camelCase',
-                                localIdentName: isDevelopment
-                                    ? '[path][name]__[local]'
-                                    : '[hash:base64]',
-                            },
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
-                    },
-                ],
-            },
-            {
-                test: /\.css/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                ],
-            },
         ],
     },
     plugins: [

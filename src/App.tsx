@@ -2,29 +2,29 @@ import React from 'react'
 
 import { IntlProvider } from 'react-intl'
 import { Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
-import { useAccount, useLocale } from '@gitcv/hooks'
+import { Container } from '@gitcv/styled'
 
-import css from './App.scss'
-import { Auth, Home, Profile } from './routes'
+import { useLocale, useTheme } from './hooks'
+
+import { Auth, Dashboard } from './routes'
 
 const App: React.FC = () => {
+    const theme = useTheme()
     const { locale, messages } = useLocale()
-    const { fetchStatus } = useAccount()
 
     return (
-        <IntlProvider locale={locale} messages={messages}>
-            <div className={css.container}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route
-                        path="/profile"
-                        element={<Profile fetchStatus={fetchStatus} />}
-                    />
-                </Routes>
-            </div>
-        </IntlProvider>
+        <ThemeProvider theme={theme}>
+            <IntlProvider locale={locale} messages={messages}>
+                <Container>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/auth" element={<Auth />} />
+                    </Routes>
+                </Container>
+            </IntlProvider>
+        </ThemeProvider>
     )
 }
 
