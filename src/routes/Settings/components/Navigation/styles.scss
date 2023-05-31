@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eee;
+    height: 100vh;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid #eee;
+    padding: 24px 0;
+}
+
+.photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+}
+
+.name {
+    display: flex;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+        height: 34px;
+        padding: 0 24px;
+        align-items: center;
+        display: flex;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        &-active {
+            color: red;
+        }
+    }
+}

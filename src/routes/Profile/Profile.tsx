@@ -1,26 +1,16 @@
-import React from 'react'
+import { useParams } from 'react-router-dom'
 
-import { Editor } from '@gitcv/lib/components'
-import { useAccount } from '@gitcv/store/hooks'
+import { useTitle } from '@gitcv/hooks'
 
-import css from './Profile.scss'
-import { useProfile } from './hooks'
-import { ProfileProps } from './types'
+import { ProfileParams } from '@gitcv/routes/Profile/types'
 
-const Profile: React.FC<ProfileProps> = ({ fetchStatus }) => {
-    const { name } = useAccount()
-    const { handleSave } = useProfile()
+import styles from './styles.scss'
 
-    if (!fetchStatus.isSucceed) {
-        return null
-    }
+const Profile = () => {
+    const { cvtag } = useParams<ProfileParams>()
+    useTitle(cvtag)
 
-    return (
-        <div className={css.container}>
-            <span>{name}</span>
-            <Editor onSave={handleSave} />
-        </div>
-    )
+    return <div className={styles.container}>Profile Name</div>
 }
 
 export default Profile

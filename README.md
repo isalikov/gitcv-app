@@ -1,8 +1,10 @@
-# react-typescript
+# gitcv-app
+
+Git CV Web App
 
 ### Requirements
 
-- [Nodejs ^16](https://nodejs.org/en/)
+- [Nodejs ^18](https://nodejs.org/en/)
 - [Yarn ^1.22](https://yarnpkg.com/)
 
 ### Features

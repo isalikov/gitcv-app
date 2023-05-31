@@ -88,6 +88,12 @@ const options = {
         }),
         new DefinePlugin({
             'process.env': {
+                API_URL: JSON.stringify(
+                    process.env.API_URL || 'http://localhost:3001'
+                ),
+                OAUTH_URL: JSON.stringify(
+                    process.env.OATH_URL || 'http://localhost:3000/github/oauth'
+                ),
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
             },
         }),

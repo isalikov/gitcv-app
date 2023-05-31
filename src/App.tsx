@@ -1,29 +1,55 @@
-import React from 'react'
+import 'rsuite/dist/rsuite.min.css'
 
+import { lazy, useEffect } from 'react'
+
+import { AxiosError } from 'axios'
 import { IntlProvider } from 'react-intl'
+import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
-import { useAccount, useLocale } from '@gitcv/hooks'
+import { fetchAuthorizedUser } from '@gitcv/api'
+import { useLocale } from '@gitcv/hooks'
+import { AppDispatch } from '@gitcv/store'
+import {
+    userFetchingSucceed,
+    userFetchingError,
+    userFetchingStart,
+} from '@gitcv/store/user'
 
-import css from './App.scss'
-import { Auth, Home, Profile } from './routes'
+const AuthHandler = lazy(() => import('./routes/AuthHandler/AuthHandler'))
+const Home = lazy(() => import('./routes/Home/Home'))
+const Profile = lazy(() => import('./routes/Profile/Profile'))
+const Settings = lazy(() => import('./routes/Settings/Settings'))
 
-const App: React.FC = () => {
+const App = () => {
+    const dispatch = useDispatch<AppDispatch>()
     const { locale, messages } = useLocale()
-    const { fetchStatus } = useAccount()
+
+    const fetchUser = async () => {
+        dispatch(userFetchingStart())
+
+        try {
+            const user = await fetchAuthorizedUser()
+            dispatch(userFetchingSucceed(user))
+        } catch (e: unknown) {
+            const { response } = e as AxiosError
+
+            dispatch(userFetchingError(response?.status))
+        }
+    }
+
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
     return (
         <IntlProvider locale={locale} messages={messages}>
-            <div className={css.container}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route
-                        path="/profile"
-                        element={<Profile fetchStatus={fetchStatus} />}
-                    />
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/auth/:token" element={<AuthHandler />} />
+                <Route path="/settings/*" element={<Settings />} />
+                <Route path="/:cvtag" element={<Profile />} />
+            </Routes>
         </IntlProvider>
     )
 }

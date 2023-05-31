@@ -1,1 +1,1 @@
-export const SESSION_TOKEN = 'session_token'
+export const SESSION_TOKEN = 'gitcv_session_id'

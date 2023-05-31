@@ -1,29 +1,21 @@
-import React from 'react'
-
 import { useIntl } from 'react-intl'
 
-import { Page } from '@gitcv/lib/components'
+import { Button } from 'rsuite'
 
-import css from './Home.scss'
+import { useTitle } from '@gitcv/hooks'
 
-const Home: React.FC = () => {
+import styles from './styles.scss'
+
+const Home = () => {
     const intl = useIntl()
-
-    const title = intl.formatMessage({ id: 'home.title' })
-    document.title = title
+    useTitle(intl.formatMessage({ id: 'home.title' }))
 
     return (
-        <Page className={css.container} title={title}>
-            <span>{title}</span>
-
-            <div className={css.actions}>
-                <a href="http://localhost:3000/github/oauth">
-                    <button type="button">
-                        {intl.formatMessage({ id: 'home.login' })}
-                    </button>
-                </a>
-            </div>
-        </Page>
+        <div className={styles.container}>
+            <a href={process.env.OAUTH_URL}>
+                <Button appearance="primary">Login</Button>
+            </a>
+        </div>
     )
 }
 
