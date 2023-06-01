@@ -1,6 +1,6 @@
 const translations = {
     'home.login': 'Login',
-    'home.title': 'gitcv.io / welcome',
+    'home.dashboard': 'gitcv.io / dashboard',
 }
 
 export default translations

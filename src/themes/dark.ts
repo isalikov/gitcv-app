@@ -2,8 +2,11 @@ import { Theme } from '@gitcv/types/theme'
 
 const darkTheme: Theme = {
     colors: {
+        bg: {
+            default: '#333333',
+        },
         typo: {
-            default: '#FFF',
+            default: '#FEFEFE',
         },
     },
 }

@@ -1,15 +1,34 @@
-import { useMemo } from 'react'
+import { useContext } from 'react'
 
-import { getMessages } from '@gitcv/i18'
-import { Locale } from '@gitcv/types/i18'
+import { useIntl } from 'react-intl'
+
+import { StateContext } from '@gitcv/state'
+import { Actions } from '@gitcv/state/actions'
+import { I18 } from '@gitcv/types/i18'
 
 const useLocale = () => {
-    const locale = Locale.en
-    const messages = useMemo(() => getMessages(locale), [locale])
+    const intl = useIntl()
+    const { state, dispatch } = useContext(StateContext)
+
+    const getMessage = (id: keyof I18) => {
+        return intl.formatMessage({ id })
+    }
+
+    const setEnglishLocale = () => {
+        dispatch({ type: Actions.SET_LOCALE, payload: 'en' })
+    }
+
+    const setSpanishLocale = () => {
+        dispatch({ type: Actions.SET_LOCALE, payload: 'es' })
+    }
 
     return {
-        locale,
-        messages,
+        locale: state.locale,
+
+        getMessage,
+
+        setEnglishLocale,
+        setSpanishLocale,
     }
 }
 

@@ -1,7 +1,10 @@
 const lightTheme = {
     colors: {
+        bg: {
+            default: '#FFF',
+        },
         typo: {
-            default: '#cc3300',
+            default: '#212121',
         },
     },
 }

@@ -1,7 +1,9 @@
-import React from 'react'
+import { useLocale } from '@gitcv/hooks'
 
 const Dashboard = () => {
-    return <div>Dashboard</div>
+    const { getMessage } = useLocale()
+
+    return <div>{getMessage('home.dashboard')}</div>
 }
 
 export default Dashboard
