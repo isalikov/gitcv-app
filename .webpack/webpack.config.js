@@ -3,9 +3,18 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { DefinePlugin } = require('webpack')
+const Dotenv = require('dotenv-webpack')
 const { merge: webpackMerge } = require('webpack-merge')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
+
+const getPath = () => {
+    if (isDevelopment) {
+        return '.env.local'
+    }
+
+    return '.env'
+}
 
 const options = {
     mode: 'none',
@@ -53,10 +62,8 @@ const options = {
                 },
             ],
         }),
-        new DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-            },
+        new Dotenv({
+            path: getPath(),
         }),
         isDevelopment && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),

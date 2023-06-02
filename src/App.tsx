@@ -2,12 +2,13 @@ import { PropsWithChildren } from 'react'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
+import { useApp } from '@gitcv/hooks'
 import { IntlProvider, StateProvider, ThemeProvider } from '@gitcv/providers'
 import { Container, GlobalStyle } from '@gitcv/styled'
 
 import { Auth, Dashboard } from './routes'
 
-const Providers = ({ children }: PropsWithChildren<unknown>) => (
+export const AppProviders = ({ children }: PropsWithChildren<unknown>) => (
     <StateProvider>
         <ThemeProvider>
             <IntlProvider>{children}</IntlProvider>
@@ -15,8 +16,10 @@ const Providers = ({ children }: PropsWithChildren<unknown>) => (
     </StateProvider>
 )
 
-const App = () => (
-    <Providers>
+export const AppRoutes = () => {
+    useApp()
+
+    return (
         <BrowserRouter>
             <GlobalStyle />
             <Container>
@@ -26,7 +29,5 @@ const App = () => (
                 </Routes>
             </Container>
         </BrowserRouter>
-    </Providers>
-)
-
-export default App
+    )
+}

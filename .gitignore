@@ -5,5 +5,7 @@
 *.log
 *.snap
 
+.env.local
+
 dist
 node_modules
