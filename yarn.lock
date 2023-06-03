@@ -1198,13 +1198,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@isalikov/gitcv-api@^0.0.3":
-  version "0.0.3"
-  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/0.0.3/939ce83b3d55e5952d0eb830bd3810db933544dc#939ce83b3d55e5952d0eb830bd3810db933544dc"
-  integrity sha512-DDjV7D3dSsbE1Jnng0406JyEIRzgeSoU/OUhCT3LxdjkXYyeM+wxVzkBKpF+ffUuIjBNsO1eURAyC2d7dmbwWQ==
+"@isalikov/gitcv-api@^0.0.5":
+  version "0.0.5"
+  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/0.0.5/c01e9f4bba13d00b27b835e396472ac60ca84009#c01e9f4bba13d00b27b835e396472ac60ca84009"
+  integrity sha512-xgO58HggzulcU0zTBsEscyGXm9p/wr0pjR/uVQBGifkvi2H2MD0os063go3GOtkZkVOArkbhWTLhdffs65kTdQ==
   dependencies:
     "@editorjs/editorjs" "^2.27.0"
     "@octokit/core" "^4.2.1"
+    axios "^1.4.0"
     body-parser "^1.20.2"
     cors "^2.8.5"
     dotenv "^16.0.3"

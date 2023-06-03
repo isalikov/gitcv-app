@@ -1,7 +1,7 @@
 import axios, { CreateAxiosDefaults } from 'axios'
 
 const getSession = (): string => {
-    return localStorage.getItem('app-session') || ''
+    return localStorage.getItem('session') || ''
 }
 
 const config = {

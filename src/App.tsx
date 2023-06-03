@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, useEffect } from 'react'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
@@ -17,15 +17,23 @@ export const AppProviders = ({ children }: PropsWithChildren<unknown>) => (
 )
 
 export const AppRoutes = () => {
-    useApp()
+    const { isAuthorized, isLoading, isIdle } = useApp()
+
+    const home = isAuthorized && !isLoading ? <Dashboard /> : <div>loading</div>
+
+    useEffect(() => {
+        if (!isIdle && !isLoading && !isAuthorized) {
+            window.location.href = 'https://github.com'
+        }
+    }, [isAuthorized, isIdle, isLoading])
 
     return (
         <BrowserRouter>
             <GlobalStyle />
             <Container>
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="/auth" element={<Auth />} />
+                    <Route path="/" element={home} />
+                    <Route path="/auth/:token" element={<Auth />} />
                 </Routes>
             </Container>
         </BrowserRouter>

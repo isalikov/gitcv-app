@@ -9,3 +9,9 @@ export const fetchAuthorizedContext = async (): Promise<User> => {
 
     return data
 }
+
+export const syncAuthorizedUser = async (): Promise<User> => {
+    const { data } = await request.post<User, AxiosResponse<User>>('/user/sync')
+
+    return data
+}

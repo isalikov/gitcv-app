@@ -1,12 +1,15 @@
 import { Dispatch } from 'react'
 
-import { LOCALE, THEME } from '@isalikov/gitcv-api'
+import { LOCALE, THEME, User } from '@isalikov/gitcv-api'
 
-import { GenericAction, GenericReducer } from '@gitcv/types/helpers'
+import { FetchState, GenericAction, GenericReducer } from '@gitcv/types/helpers'
 
 import { Actions } from './actions'
 
 export type AppState = {
+    fetchState: FetchState
+    syncState: FetchState
+    user: Omit<User, 'settings'> | null
     locale: LOCALE
     theme: THEME
 }
@@ -14,6 +17,12 @@ export type AppState = {
 export type ActionType =
     | GenericAction<Actions.SET_LOCALE, LOCALE>
     | GenericAction<Actions.SET_THEME, THEME>
+    | GenericAction<Actions.FETCH_CTX_START>
+    | GenericAction<Actions.FETCH_CTX_SUCCEED, User>
+    | GenericAction<Actions.FETCH_CTX_ERROR, number>
+    | GenericAction<Actions.SYNC_USER_START>
+    | GenericAction<Actions.SYNC_USER_SUCCEED, User>
+    | GenericAction<Actions.SYNC_USER_ERROR, number>
 
 export type AppReducer = GenericReducer<AppState, ActionType>
 

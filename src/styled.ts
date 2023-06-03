@@ -103,7 +103,7 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 24px;
 
         color: ${(props) => props.theme.colors.typo.default};
-        background-color: : ${(props) => props.theme.colors.bg.default};
+        background-color: ${(props) => props.theme.colors.bg.default};
     }
 `
 
