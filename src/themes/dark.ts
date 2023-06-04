@@ -5,6 +5,9 @@ const darkTheme: Theme = {
         bg: {
             default: '#333333',
         },
+        line: {
+            default: '#333',
+        },
         typo: {
             default: '#FEFEFE',
         },

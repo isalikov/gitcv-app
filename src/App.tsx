@@ -23,7 +23,9 @@ export const AppRoutes = () => {
 
     useEffect(() => {
         if (!isIdle && !isLoading && !isAuthorized) {
-            window.location.href = 'https://github.com'
+            console.log('...')
+
+            // window.location.href = 'https://github.com'
         }
     }, [isAuthorized, isIdle, isLoading])
 

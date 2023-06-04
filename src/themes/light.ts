@@ -3,6 +3,9 @@ const lightTheme = {
         bg: {
             default: '#FFF',
         },
+        line: {
+            default: '#999',
+        },
         typo: {
             default: '#212121',
         },

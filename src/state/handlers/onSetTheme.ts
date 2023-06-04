@@ -1,8 +1,6 @@
-import { THEME } from '@isalikov/gitcv-api'
-
 import { AppState } from '../types'
 
-const onSetTheme = (state: AppState, theme: THEME): AppState => {
+const onSetTheme = (state: AppState, theme: AppState['theme']): AppState => {
     return {
         ...state,
         theme,

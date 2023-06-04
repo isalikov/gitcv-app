@@ -1,8 +1,6 @@
-import { LOCALE } from '@isalikov/gitcv-api'
-
 import { AppState } from '../types'
 
-const onSetLocale = (state: AppState, locale: LOCALE): AppState => {
+const onSetLocale = (state: AppState, locale: AppState['locale']): AppState => {
     return {
         ...state,
         locale,

@@ -2,10 +2,7 @@ import { User } from '@isalikov/gitcv-api'
 
 import { AppState } from '@gitcv/state/types'
 
-export const onSyncUserSucceed = (
-    state: AppState,
-    { settings, ...user }: User
-): AppState => ({
+export const onSyncUserSucceed = (state: AppState, user: User): AppState => ({
     ...state,
     user,
     syncState: {
