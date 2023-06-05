@@ -6,7 +6,7 @@ import { useApp } from '@gitcv/hooks'
 import { IntlProvider, StateProvider, ThemeProvider } from '@gitcv/providers'
 import { Container, GlobalStyle } from '@gitcv/styled'
 
-import { Auth, Dashboard } from './routes'
+import { Auth, Cv, Dashboard } from './routes'
 
 export const AppProviders = ({ children }: PropsWithChildren<unknown>) => (
     <StateProvider>
@@ -20,6 +20,7 @@ export const AppRoutes = () => {
     const { isAuthorized, isLoading, isIdle } = useApp()
 
     const home = isAuthorized && !isLoading ? <Dashboard /> : <div>loading</div>
+    const cv = isAuthorized && !isLoading ? <Cv /> : <div>loading</div>
 
     useEffect(() => {
         if (!isIdle && !isLoading && !isAuthorized) {
@@ -35,6 +36,7 @@ export const AppRoutes = () => {
             <Container>
                 <Routes>
                     <Route path="/" element={home} />
+                    <Route path="/:uuid" element={cv} />
                     <Route path="/auth/:token" element={<Auth />} />
                 </Routes>
             </Container>
