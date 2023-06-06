@@ -8,14 +8,14 @@ import { useAppState } from '@gitcv/hooks'
 import { Container } from '@gitcv/routes/Cv/styled'
 
 const Cv = () => {
-    const { uuid } = useParams<{ uuid: string }>()
+    const { tag } = useParams<{ tag: string }>()
     const { user } = useAppState()
 
     const [mode, setMode] = useState<'view' | 'edit'>('view')
 
     const cv = useMemo(() => {
-        return user?.cvs.find((item) => item.uuid === uuid)
-    }, [user?.cvs, uuid])
+        return user?.cvs.find((item) => item.tag === tag)
+    }, [user?.cvs, tag])
 
     if (!cv) {
         return <span>not found</span>
@@ -23,11 +23,11 @@ const Cv = () => {
 
     return (
         <Container>
-            <img width={200} src={cv.photo} alt={cv.uuid} />
+            <img width={200} src={cv.photo} alt={cv.tag} />
 
             <input type="text" value={cv.name} />
             <input type="text" value={cv.position} />
-            <input type="text" value={cv.cvtag} />
+            <input type="text" value={cv.tag} />
             <input type="text" value={cv.location} />
 
             <div>
@@ -56,12 +56,12 @@ const Cv = () => {
 
             <span>about</span>
             {mode === 'edit' && (
-                <MDEditor value={cv.about} onChange={() => {}} />
+                <MDEditor value={cv.profile} onChange={() => {}} />
             )}
 
             {mode === 'view' && (
                 <MDEditor.Markdown
-                    source={cv.about}
+                    source={cv.profile}
                     style={{ whiteSpace: 'pre-wrap' }}
                 />
             )}

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { createCv } from '@gitcv/api/user'
+import { createCv } from '@gitcv/api/cv'
 import { useLocale, useUser } from '@gitcv/hooks'
 
 import { Container } from './styled'
@@ -11,13 +11,15 @@ const Dashboard = () => {
     const { getMessage } = useLocale()
     const { syncUser, syncState, user } = useUser()
 
+    const [title, setTitle] = useState('')
     const [loading, setLoading] = useState(false)
     const [selected, setSelected] = useState<number[]>([])
 
     const handleGen = async () => {
         setLoading(true)
-        await createCv(selected)
+        await createCv({ repos: selected, title })
         setLoading(false)
+        setTitle('')
     }
 
     const handleSelect = (id: number) => {
@@ -55,7 +57,7 @@ const Dashboard = () => {
             >
                 {user.repos.map((p) => (
                     <div
-                        key={p.githubID}
+                        key={p.id}
                         style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -63,15 +65,21 @@ const Dashboard = () => {
                         }}
                     >
                         <input
-                            checked={selected.includes(p.githubID)}
-                            onChange={() => handleSelect(p.githubID)}
+                            checked={selected.includes(p.id)}
+                            onChange={() => handleSelect(p.id)}
                             type="checkbox"
-                            name={p.name}
-                            id={p.githubID.toString()}
+                            name={p.title}
+                            id={p.id.toString()}
                         />
-                        <label htmlFor={p.githubID.toString()}>{p.name}</label>
+                        <label htmlFor={p.id.toString()}>{p.title}</label>
                     </div>
                 ))}
+
+                <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
 
                 <button
                     type="button"
@@ -82,8 +90,8 @@ const Dashboard = () => {
                 </button>
             </div>
             {user.cvs.map((cv) => (
-                <Link to={cv.uuid} key={cv.uuid}>
-                    {cv.uuid}
+                <Link to={cv.tag} key={cv.tag}>
+                    {cv.title}
                 </Link>
             ))}
         </Container>

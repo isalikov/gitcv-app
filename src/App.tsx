@@ -24,8 +24,6 @@ export const AppRoutes = () => {
 
     useEffect(() => {
         if (!isIdle && !isLoading && !isAuthorized) {
-            console.log('...')
-
             // window.location.href = 'https://github.com'
         }
     }, [isAuthorized, isIdle, isLoading])
@@ -36,7 +34,7 @@ export const AppRoutes = () => {
             <Container>
                 <Routes>
                     <Route path="/" element={home} />
-                    <Route path="/:uuid" element={cv} />
+                    <Route path="/:tag" element={cv} />
                     <Route path="/auth/:token" element={<Auth />} />
                 </Routes>
             </Container>
