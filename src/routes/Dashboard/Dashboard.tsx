@@ -2,8 +2,7 @@ import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { createCv } from '@gitcv/api/cv'
-import { useLocale, useUser } from '@gitcv/hooks'
+import { useGenerateCv, useLocale, useUser } from '@gitcv/hooks'
 
 import { Container } from './styled'
 
@@ -12,15 +11,9 @@ const Dashboard = () => {
     const { syncUser, syncState, user } = useUser()
 
     const [title, setTitle] = useState('')
-    const [loading, setLoading] = useState(false)
     const [selected, setSelected] = useState<number[]>([])
 
-    const handleGen = async () => {
-        setLoading(true)
-        await createCv({ repos: selected, title })
-        setLoading(false)
-        setTitle('')
-    }
+    const { isLoading, handleGenerateCv } = useGenerateCv()
 
     const handleSelect = (id: number) => {
         const existIndex = selected.findIndex((s) => s === id)
@@ -84,9 +77,9 @@ const Dashboard = () => {
                 <button
                     type="button"
                     style={{ margin: '12px 0' }}
-                    onClick={handleGen}
+                    onClick={() => handleGenerateCv(title, selected)}
                 >
-                    {loading ? 'generating ai cv...' : 'generate'}
+                    {isLoading ? 'generating ai cv...' : 'generate'}
                 </button>
             </div>
             {user.cvs.map((cv) => (

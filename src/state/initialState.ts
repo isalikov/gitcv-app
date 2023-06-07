@@ -8,6 +8,8 @@ const awaitRequestState = {
 }
 
 const initialState: AppState = {
+    genCvState: awaitRequestState,
+    saveState: awaitRequestState,
     fetchState: awaitRequestState,
     syncState: awaitRequestState,
     user: null,

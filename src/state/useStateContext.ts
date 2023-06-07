@@ -6,6 +6,9 @@ import {
     onFetchCtxError,
     onFetchCtxStart,
     onFetchCtxSucceed,
+    onGenCvError,
+    onGenCvStart,
+    onGenCvSucceed,
     onSetLocale,
     onSetTheme,
     onSyncUserError,
@@ -25,6 +28,15 @@ const reducer = (state: AppState, action: ActionType): AppState => {
 
         case Actions.FETCH_CTX_SUCCEED:
             return onFetchCtxSucceed(state, action.payload)
+
+        case Actions.GEN_CV_ERROR:
+            return onGenCvError(state, action.payload)
+
+        case Actions.GEN_CV_START:
+            return onGenCvStart(state)
+
+        case Actions.GEN_CV_SUCCEED:
+            return onGenCvSucceed(state, action.payload)
 
         case Actions.SET_LOCALE:
             return onSetLocale(state, action.payload)

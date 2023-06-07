@@ -1205,10 +1205,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@isalikov/gitcv-api@^0.0.14":
-  version "0.0.14"
-  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/0.0.14/76a867a617aa88f7db723bf3655fd439d8de3a4c#76a867a617aa88f7db723bf3655fd439d8de3a4c"
-  integrity sha512-TJJC9isrJ+fXg/KtIGSv0BQS0g9QC8Ju6lfZ053io6x67zyWATTa85nR5+BvTiklFhQFaXOxZjblxXmcSZ90eQ==
+"@isalikov/gitcv-api@^0.0.17":
+  version "0.0.17"
+  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/0.0.17/ba83ac923fccf81b29a4a7c68b997d60ce0be8bd#ba83ac923fccf81b29a4a7c68b997d60ce0be8bd"
+  integrity sha512-QUgSnOoOEx1rgu7e5iFHLZT94L/l89vzkuIzgbN9hECXsiAIoYdgQn2qFpchYO3hwadOrnxTiW7m89p2suco5A==
   dependencies:
     "@octokit/core" "^4.2.1"
     axios "^1.4.0"
