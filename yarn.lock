@@ -1205,10 +1205,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@isalikov/gitcv-api@^0.0.17":
-  version "0.0.17"
-  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/0.0.17/ba83ac923fccf81b29a4a7c68b997d60ce0be8bd#ba83ac923fccf81b29a4a7c68b997d60ce0be8bd"
-  integrity sha512-QUgSnOoOEx1rgu7e5iFHLZT94L/l89vzkuIzgbN9hECXsiAIoYdgQn2qFpchYO3hwadOrnxTiW7m89p2suco5A==
+"@isalikov/gitcv-api@^1.0.0":
+  version "1.0.0"
+  resolved "https://npm.pkg.github.com/download/@isalikov/gitcv-api/1.0.0/7009da0323b5aee640f8b90c94ba3876802b6b27#7009da0323b5aee640f8b90c94ba3876802b6b27"
+  integrity sha512-QO8vhjILfD2E0+GZttHbRFVPiDz1/78Xos6V99bYLXZQIzQqzQVUc4lMTBktCF18HtL1ioorSmUjepD5QGBdgA==
   dependencies:
     "@octokit/core" "^4.2.1"
     axios "^1.4.0"
@@ -4093,6 +4093,11 @@ hpack.js@^2.1.6:
     obuf "^1.0.0"
     readable-stream "^2.0.1"
     wbuf "^1.1.0"
+
+hq-cropper@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/hq-cropper/-/hq-cropper-2.0.2.tgz#a0e8842d0194b7b1b553991e1e66b6f03ee8ae7e"
+  integrity sha512-MgGrurox3Lnv1rBJ3AASfCNUF0vu9Si9TPYAqNEzTL7yhV9HBTni/lBXttU7xHuQpuUiJLkbtw7P0X2bosDk9A==
 
 html-entities@^2.1.0, html-entities@^2.3.2:
   version "2.3.3"
