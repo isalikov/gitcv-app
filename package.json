@@ -159,6 +159,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
+        "fast-deep-equal": "^3.1.3",
         "feather-react": "^3.1.1",
         "hq-cropper": "^2.0.2",
         "html-webpack-plugin": "^5.5.1",

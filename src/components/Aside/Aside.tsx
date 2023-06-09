@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { useModal } from '@gitcv/hooks'
 
-import { AsideButton, Container } from './styled'
+import { AsideButton, Content, Container } from './styled'
 import useAside from './useAside'
 import { GenerateCvDialog } from '../GenerateCvDialog'
 
@@ -15,31 +15,36 @@ const Aside = () => {
 
     return (
         <Container>
-            <Link to="/">
-                <AsideButton isActive={isDashActive}>
-                    <Icon name="settings" size={20} />
-                </AsideButton>
-            </Link>
-
-            {links.map((link) => (
-                <Link to={link.to} key={link.id}>
-                    <AsideButton
-                        isActive={isLinkActive(link.to)}
-                        className={`link-${link.to}`}
-                    >
-                        <Icon name="file-text" size={20} />
+            <Content>
+                <Link to="/">
+                    <AsideButton isActive={isDashActive}>
+                        <Icon name="settings" size={20} />
                     </AsideButton>
-                    <Tooltip content={link.title} target={`.link-${link.to}`} />
                 </Link>
-            ))}
 
-            <AsideButton onClick={handleOpen}>
-                <Icon name="plus" size={20} />
-            </AsideButton>
+                {links.map((link) => (
+                    <Link to={link.to} key={link.id}>
+                        <AsideButton
+                            isActive={isLinkActive(link.to)}
+                            className={`link-${link.to}`}
+                        >
+                            <Icon name="file-text" size={20} />
+                        </AsideButton>
+                        <Tooltip
+                            content={link.title}
+                            target={`.link-${link.to}`}
+                        />
+                    </Link>
+                ))}
 
-            <Modal>
-                <GenerateCvDialog onComplete={handleClose} />
-            </Modal>
+                <AsideButton onClick={handleOpen}>
+                    <Icon name="plus" size={20} />
+                </AsideButton>
+
+                <Modal>
+                    <GenerateCvDialog onComplete={handleClose} />
+                </Modal>
+            </Content>
         </Container>
     )
 }

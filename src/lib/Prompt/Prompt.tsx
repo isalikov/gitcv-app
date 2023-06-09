@@ -4,12 +4,11 @@ import Icon from 'feather-react'
 
 import { Button } from 'primereact/button'
 
-import { useLocale } from '@gitcv/hooks'
-
 import { Container, Body, Footer, Header, Title, CloseButton } from './styled'
 import { PromptProps } from './types'
 
 const Prompt = ({
+    buttonText,
     children,
     disabled,
     loading,
@@ -18,8 +17,6 @@ const Prompt = ({
     title,
     width = 490,
 }: PropsWithChildren<PromptProps>) => {
-    const { getMessage } = useLocale()
-
     return (
         <Container width={width}>
             <Header>
@@ -37,9 +34,9 @@ const Prompt = ({
                     size="small"
                     type="button"
                     onClick={onSubmit}
-                >
-                    {getMessage('label.generate')}
-                </Button>
+                    label={buttonText}
+                    severity="secondary"
+                />
             </Footer>
         </Container>
     )

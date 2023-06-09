@@ -1,20 +1,32 @@
 import { SavingIndicator } from '@gitcv/components'
 
-import { PrimaryData, Section } from './components'
-import { Container } from './styled'
+import { Contacts, PrimaryData, Section } from './components'
+import { Content, Container } from './styled'
+import { useTitle } from '../../hooks'
 
 const Settings = () => {
+    useTitle('Settings')
     return (
         <Container>
-            <SavingIndicator />
+            <Content>
+                <SavingIndicator />
 
-            <Section title="Settings">
-                <PrimaryData />
-            </Section>
+                <Section title="Settings">
+                    <PrimaryData />
+                </Section>
 
-            <Section title="Section 2">...</Section>
-            <Section title="Section 3">...</Section>
-            <Section title="Section 4">...</Section>
+                <Section title="Contacts">
+                    <Contacts />
+                </Section>
+
+                <Section title="Profile">...</Section>
+
+                <Section title="Education">...</Section>
+
+                <Section title="Employment History">...</Section>
+
+                <Section title="Portfolio">...</Section>
+            </Content>
         </Container>
     )
 }

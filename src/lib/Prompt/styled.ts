@@ -12,7 +12,7 @@ export const Container = styled.div<{ width: number }>`
 export const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    height: 72px;
     padding: 0 24px;
     align-items: center;
 `
@@ -24,7 +24,7 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
     border-top: 1px dotted ${(props) => props.theme.colors.light};
-    height: 68px;
+    height: 72px;
     display: flex;
     justify-content: flex-end;
     padding: 0 24px;

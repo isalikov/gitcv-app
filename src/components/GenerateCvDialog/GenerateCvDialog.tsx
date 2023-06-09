@@ -19,11 +19,16 @@ const GenerateCvDialog = ({
         setRepos,
         title,
         setTitle,
-    } = useGenerateCvDialog()
+    } = useGenerateCvDialog(onComplete)
 
     return (
         <Container>
             <Prompt
+                buttonText={
+                    isLoading
+                        ? getMessage('label.generate.progress')
+                        : getMessage('label.generate')
+                }
                 disabled={!title || !repos.length}
                 loading={isLoading}
                 title={getMessage('title.generate.cv')}

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-import { useAppState } from '@gitcv/hooks'
+import { useAppState, useTitle } from '@gitcv/hooks'
 import { Container } from '@gitcv/routes/Cv/styled'
 
 const Cv = () => {
@@ -17,6 +17,7 @@ const Cv = () => {
         return <span>not found</span>
     }
 
+    useTitle(cv.title)
     return (
         <Container>
             <h3>{cv.title}</h3>

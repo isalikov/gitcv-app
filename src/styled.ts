@@ -72,16 +72,6 @@ export const GlobalStyle = createGlobalStyle`
         color: ${(props) => props.theme.colors.dark};
         background-color: ${(props) => props.theme.colors.empty};
     }
-
-    .p-button {
-        & svg {
-            margin-right: 6px;
-        }
-
-        & .p-button-icon {
-            margin-right: 6px;
-        }
-    }
 `
 
 export const Container = styled.div`

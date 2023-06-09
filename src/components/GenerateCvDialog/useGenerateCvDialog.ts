@@ -8,7 +8,7 @@ import { createCv } from '@gitcv/api/cv'
 import { StateContext } from '@gitcv/state'
 import { Actions } from '@gitcv/state/actions'
 
-const useGenerateCvDialog = () => {
+const useGenerateCvDialog = (onComplete: () => void) => {
     const nav = useNavigate()
     const { state, dispatch } = useContext(StateContext)
     const [repos, setRepos] = useState<number[]>([])
@@ -34,6 +34,7 @@ const useGenerateCvDialog = () => {
             const payload = await createCv({ title, repos })
             dispatch({ type: Actions.GEN_CV_SUCCEED, payload })
 
+            onComplete()
             nav(`/${payload.tag}`)
         } catch (error) {
             const { response } = error as AxiosError

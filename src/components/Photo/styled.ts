@@ -18,7 +18,7 @@ export const Container = styled.div`
     flex-shrink: 0;
     border-radius: 8px;
     border: 1px solid ${(props) => props.theme.colors.light};
-    height: 200px;
+    height: 260px;
     padding: 12px;
     align-items: center;
     flex-direction: column;
@@ -33,8 +33,8 @@ export const Container = styled.div`
 `
 
 export const Image = styled.img`
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
 `
 

@@ -1,10 +1,18 @@
 import { lighten } from 'polished'
+import { ScrollPanel } from 'primereact/scrollpanel'
 import styled from 'styled-components'
 
-export const Container = styled.aside`
+export const Container = styled(ScrollPanel)`
+    height: 100vh;
+
+    & .p-scrollpanel-bar-y {
+        display: none;
+    }
+`
+
+export const Content = styled.aside`
     display: flex;
     flex-direction: column;
-    height: 100vh;
     border-right: 1px solid ${(props) => props.theme.colors.light};
 `
 

@@ -12,7 +12,7 @@ const AppLoading = () => {
                 height="105"
                 viewBox="0 0 105 105"
                 xmlns="http://www.w3.org/2000/svg"
-                fill={theme.colors.action}
+                fill={theme.colors.dark}
             >
                 <circle cx="12.5" cy="12.5" r="12.5">
                     <animate
