@@ -1,4 +1,3 @@
-import darkTheme from '@gitcv/themes/dark'
 import lightTheme from '@gitcv/themes/light'
 
 import { Theme } from '@gitcv/types/theme'
@@ -10,7 +9,7 @@ const useTheme = (): Theme => {
 
     switch (state.theme) {
         case 'dark':
-            return darkTheme
+            return lightTheme
 
         default:
             return lightTheme

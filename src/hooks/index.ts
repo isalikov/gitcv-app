@@ -1,6 +1,7 @@
 export { default as useApp } from './useApp'
 export { default as useAppState } from './useAppState'
-export { default as useGenerateCv } from './useGenerateCv'
+export { default as useDebounceEffect } from './useDebounceEffect'
 export { default as useLocale } from './useLocale'
+export { default as useModal } from './useModal'
 export { default as useTheme } from './useTheme'
 export { default as useUser } from './useUser'

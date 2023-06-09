@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 
@@ -6,7 +6,8 @@ import { useApp } from '@gitcv/hooks'
 import { IntlProvider, StateProvider, ThemeProvider } from '@gitcv/providers'
 import { Container, GlobalStyle } from '@gitcv/styled'
 
-import { Auth, Cv, Dashboard } from './routes'
+import { AppLoading, Aside } from './components'
+import { Cv, Settings } from './routes'
 
 export const AppProviders = ({ children }: PropsWithChildren<unknown>) => (
     <StateProvider>
@@ -17,27 +18,21 @@ export const AppProviders = ({ children }: PropsWithChildren<unknown>) => (
 )
 
 export const AppRoutes = () => {
-    const { isAuthorized, isLoading, isIdle } = useApp()
-
-    const home = isAuthorized && !isLoading ? <Dashboard /> : <div>loading</div>
-    const cv = isAuthorized && !isLoading ? <Cv /> : <div>loading</div>
-
-    useEffect(() => {
-        if (!isIdle && !isLoading && !isAuthorized) {
-            // window.location.href = 'https://github.com'
-        }
-    }, [isAuthorized, isIdle, isLoading])
+    const { isLoading, isReady } = useApp()
 
     return (
         <BrowserRouter>
             <GlobalStyle />
-            <Container>
-                <Routes>
-                    <Route path="/" element={home} />
-                    <Route path="/:tag" element={cv} />
-                    <Route path="/auth/:token" element={<Auth />} />
-                </Routes>
-            </Container>
+            {isLoading && <AppLoading />}
+            {isReady && !isLoading && (
+                <Container>
+                    <Aside />
+                    <Routes>
+                        <Route path="/" element={<Settings />} />
+                        <Route path="/:tag" element={<Cv />} />
+                    </Routes>
+                </Container>
+            )}
         </BrowserRouter>
     )
 }

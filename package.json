@@ -99,6 +99,9 @@
             "react/function-component-definition": [
                 "off"
             ],
+            "react/jsx-props-no-spreading": [
+                "off"
+            ],
             "@typescript-eslint/naming-convention": [
                 "off"
             ]
@@ -133,7 +136,7 @@
         "@babel/preset-env": "^7.22.4",
         "@babel/preset-react": "^7.22.3",
         "@babel/preset-typescript": "^7.21.5",
-        "@isalikov/gitcv-api": "^1.0.0",
+        "@isalikov/gitcv-api": "^1.0.2",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
         "@types/react": "^18.2.7",
         "@types/react-dom": "^18.2.4",
@@ -156,13 +159,19 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
+        "feather-react": "^3.1.1",
         "hq-cropper": "^2.0.2",
         "html-webpack-plugin": "^5.5.1",
         "husky": "^8.0.3",
         "lint-staged": "^13.2.2",
+        "polished": "^4.2.2",
         "prettier": "2.8.8",
+        "primeflex": "^3.3.1",
+        "primeicons": "^6.0.1",
+        "primereact": "^9.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-hook-form": "^7.44.3",
         "react-intl": "^6.4.2",
         "react-refresh": "^0.14.0",
         "react-router-dom": "^6.11.2",

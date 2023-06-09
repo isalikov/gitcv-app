@@ -11,7 +11,7 @@ export type AppState = {
     syncState: FetchState
     saveState: FetchState
     genCvState: FetchState
-    user: Omit<User, 'settings'> | null
+    user: User | null
     locale: 'en' | 'es'
     theme: 'dark' | 'light'
 }
@@ -28,6 +28,9 @@ export type ActionType =
     | GenericAction<Actions.SYNC_USER_START>
     | GenericAction<Actions.SYNC_USER_SUCCEED, User>
     | GenericAction<Actions.SYNC_USER_ERROR, number>
+    | GenericAction<Actions.SAVE_USER_START>
+    | GenericAction<Actions.SAVE_USER_SUCCEED, User>
+    | GenericAction<Actions.SAVE_USER_ERROR, number>
 
 export type AppReducer = GenericReducer<AppState, ActionType>
 

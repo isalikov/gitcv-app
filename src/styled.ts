@@ -1,4 +1,14 @@
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
+
+import PrimeReact from 'primereact/api'
+
 import styled, { createGlobalStyle } from 'styled-components'
+
+PrimeReact.cssTransition = true
+PrimeReact.ripple = true
 
 export const GlobalStyle = createGlobalStyle`
     *,
@@ -54,16 +64,27 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Hanken Grotesk', sans-serif;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: normal;
 
-        color: ${(props) => props.theme.colors.typo.default};
-        background-color: ${(props) => props.theme.colors.bg.default};
+        color: ${(props) => props.theme.colors.dark};
+        background-color: ${(props) => props.theme.colors.empty};
+    }
+
+    .p-button {
+        & svg {
+            margin-right: 6px;
+        }
+
+        & .p-button-icon {
+            margin-right: 6px;
+        }
     }
 `
 
 export const Container = styled.div`
     display: grid;
+    grid-template-columns: 61px 1fr;
 `

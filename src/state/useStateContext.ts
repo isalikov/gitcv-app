@@ -9,6 +9,9 @@ import {
     onGenCvError,
     onGenCvStart,
     onGenCvSucceed,
+    onSaveUserError,
+    onSaveUserStart,
+    onSaveUserSucceed,
     onSetLocale,
     onSetTheme,
     onSyncUserError,
@@ -37,6 +40,15 @@ const reducer = (state: AppState, action: ActionType): AppState => {
 
         case Actions.GEN_CV_SUCCEED:
             return onGenCvSucceed(state, action.payload)
+
+        case Actions.SAVE_USER_ERROR:
+            return onSaveUserError(state, action.payload)
+
+        case Actions.SAVE_USER_START:
+            return onSaveUserStart(state)
+
+        case Actions.SAVE_USER_SUCCEED:
+            return onSaveUserSucceed(state, action.payload)
 
         case Actions.SET_LOCALE:
             return onSetLocale(state, action.payload)
