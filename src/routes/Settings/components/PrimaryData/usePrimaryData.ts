@@ -1,12 +1,9 @@
-import { useContext } from 'react'
-
 import { User } from '@isalikov/gitcv-api'
 
 import { useForm, useWatch } from 'react-hook-form'
 
 import { INPUT_FORM_DEBOUNCE } from '@gitcv/constants'
 import { useDebounceEffect, useUser } from '@gitcv/hooks'
-import { StateContext } from '@gitcv/state'
 
 import { FormValues } from './types'
 
@@ -27,14 +24,17 @@ const getDefaultValues = (user: User | null): FormValues => {
 }
 
 const usePrimaryData = () => {
-    const { state } = useContext(StateContext)
-    const { saveUser } = useUser()
+    const { saveUser, syncUser, user, syncState } = useUser()
 
     const methods = useForm<FormValues>({
-        defaultValues: getDefaultValues(state.user),
+        defaultValues: getDefaultValues(user),
     })
 
     const values = useWatch({ control: methods.control })
+
+    const handleSync = async () => {
+        syncUser()
+    }
 
     const handleChangePhoto = (photo: string) => {
         saveUser({ photo })
@@ -49,7 +49,13 @@ const usePrimaryData = () => {
         methods.formState.isDirty
     )
 
-    return { ...methods, photo: state.user?.photo, handleChangePhoto }
+    return {
+        ...methods,
+        photo: user?.photo,
+        handleChangePhoto,
+        handleSync,
+        syncing: syncState.pending,
+    }
 }
 
 export default usePrimaryData

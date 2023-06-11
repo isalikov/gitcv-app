@@ -6,8 +6,14 @@ export const Container = styled.div`
 `
 
 export const Fields = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 40px 40px auto 40px;
     gap: 12px;
     flex: 1 1 auto;
+`
+
+export const Footer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 `

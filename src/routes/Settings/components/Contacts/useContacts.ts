@@ -1,20 +1,18 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import eq from 'fast-deep-equal'
 
 import { INPUT_FORM_DEBOUNCE } from '@gitcv/constants'
 import { useDebounceEffect, useUser } from '@gitcv/hooks'
-import { StateContext } from '@gitcv/state'
 
 const useContacts = () => {
-    const { state } = useContext(StateContext)
-    const { saveUser } = useUser()
+    const { saveUser, user } = useUser()
 
     const [key, setKey] = useState('')
     const [value, setValue] = useState('')
 
     const [contacts, setContacts] = useState<Record<string, string>>(
-        state.user?.contacts || {}
+        user?.contacts || {}
     )
 
     const disabled = !key || !value
@@ -70,7 +68,7 @@ const useContacts = () => {
         },
         contacts,
         INPUT_FORM_DEBOUNCE,
-        !eq(contacts, state.user?.contacts)
+        !eq(contacts, user?.contacts)
     )
 
     useEffect(() => {
