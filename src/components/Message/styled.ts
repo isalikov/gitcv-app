@@ -1,24 +1,16 @@
-import FeaterIcon from 'feather-react'
+import FeatherIcon from 'feather-react'
 import styled from 'styled-components'
 
-import { MessageProps } from '@gitcv/components/Message/types'
-
-export const Icon = styled(FeaterIcon)`
+export const Icon = styled(FeatherIcon)`
     color: ${(props) => props.theme.colors.dark};
 `
 
-export const Container = styled.div<MessageProps>`
+export const Container = styled.div`
     display: grid;
     grid-template-columns: 20px 1fr;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 8px;
-
-    & ${Icon} {
-        transform: translateY(
-            ${(props) => (props.align === 'center' ? 0 : 2)}px
-        );
-    }
 `
 
 export const Text = styled.span`

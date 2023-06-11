@@ -2,8 +2,9 @@ import { useMemo } from 'react'
 
 import { useParams } from 'react-router-dom'
 
+import { MdEditor } from '@gitcv/components'
 import { useAppState, useTitle } from '@gitcv/hooks'
-import { Container } from '@gitcv/routes/Cv/styled'
+import { Content, Container } from '@gitcv/routes/Cv/styled'
 
 const Cv = () => {
     const { tag } = useParams<{ tag: string }>()
@@ -20,7 +21,10 @@ const Cv = () => {
     useTitle(cv.title)
     return (
         <Container>
-            <h3>{cv.title}</h3>
+            <Content>
+                <h3>{cv.title}</h3>
+                <MdEditor value={cv.profile} onChange={() => {}} />
+            </Content>
         </Container>
     )
 }

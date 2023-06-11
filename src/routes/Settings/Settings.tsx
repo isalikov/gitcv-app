@@ -1,6 +1,6 @@
 import { SavingIndicator } from '@gitcv/components'
 
-import { Contacts, PrimaryData, Section } from './components'
+import { Contacts, PrimaryData, Profile, Section } from './components'
 import { Content, Container } from './styled'
 import { useTitle } from '../../hooks'
 
@@ -19,13 +19,19 @@ const Settings = () => {
                     <Contacts />
                 </Section>
 
-                <Section title="Profile">...</Section>
+                <Section title="Profile">
+                    <Profile />
+                </Section>
+
+                <Section title="Skills">...</Section>
+
+                <Section title="Languages">...</Section>
 
                 <Section title="Education">...</Section>
 
                 <Section title="Employment History">...</Section>
 
-                <Section title="Portfolio">...</Section>
+                <Section title="Projects">...</Section>
             </Content>
         </Container>
     )

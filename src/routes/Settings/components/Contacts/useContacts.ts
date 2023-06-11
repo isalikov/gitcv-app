@@ -10,64 +10,57 @@ const useContacts = () => {
     const { state } = useContext(StateContext)
     const { saveUser } = useUser()
 
-    const [tempKey, setTempKey] = useState('')
-    const [tempValue, setTempValue] = useState('')
-
-    const [isAppend, setIsAppend] = useState(false)
+    const [key, setKey] = useState('')
+    const [value, setValue] = useState('')
 
     const [contacts, setContacts] = useState<Record<string, string>>(
         state.user?.contacts || {}
     )
 
-    const handleAppend = () => {
-        if (!tempValue || !tempKey) {
+    const disabled = !key || !value
+
+    const clear = () => {
+        setKey('')
+        setValue('')
+    }
+
+    const handleAdd = () => {
+        if (disabled) {
             return
         }
 
         setContacts({
             ...contacts,
-            [tempKey]: tempValue,
-        })
-
-        setIsAppend(false)
-        setTempKey('')
-        setTempValue('')
-    }
-
-    const handleRemove = (key: string) => {
-        const payload = Object.keys(contacts)
-            .filter((k) => k !== key)
-            .reduce<Record<string, string>>(
-                (result, k) => ({
-                    ...result,
-                    [k]: contacts[k],
-                }),
-                {}
-            )
-
-        setContacts(payload)
-    }
-
-    const handleAdd = () => {
-        setIsAppend(true)
-    }
-
-    const handleChange = (key: string, value: string) => {
-        setContacts({
-            ...contacts,
             [key]: value,
         })
+
+        clear()
+    }
+
+    const handleChange = (keyString: string, valueString: string) => {
+        setContacts({
+            ...contacts,
+            [keyString]: valueString,
+        })
+    }
+
+    const handleRemove = (keyString: string) => {
+        setContacts(
+            Object.keys(contacts)
+                .filter((k) => k !== keyString)
+                .reduce<Record<string, string>>(
+                    (result, k) => ({
+                        ...result,
+                        [k]: contacts[k],
+                    }),
+                    {}
+                )
+        )
     }
 
     const handleKeyPress = (e: KeyboardEvent) => {
-        if (e.key === 'Enter' && isAppend) {
-            handleAppend()
-        }
-
-        if (e.key === 'Escape' && isAppend) {
-            setIsAppend(false)
-            setTempKey('')
-            setTempValue('')
+        if (e.key === 'Enter' && !disabled) {
+            handleAdd()
         }
     }
 
@@ -89,16 +82,15 @@ const useContacts = () => {
     }, [handleKeyPress])
 
     return {
+        disabled,
         contacts,
+        key,
+        value,
+        setKey,
+        setValue,
         handleAdd,
-        handleAppend,
         handleChange,
         handleRemove,
-        isAppend,
-        setTempKey,
-        setTempValue,
-        tempKey,
-        tempValue,
     }
 }
 

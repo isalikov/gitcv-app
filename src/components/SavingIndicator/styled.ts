@@ -8,9 +8,21 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 12px;
+    background-color: rgba(32, 32, 32, 0.05);
+    padding: 0 14px;
+    border-radius: 24px;
 `
 
 export const Title = styled.span`
     font-weight: 500;
     font-size: 12px;
+`
+
+export const Done = styled.div`
+    display: flex;
+    width: 22px;
+    height: 22px;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-700);
 `

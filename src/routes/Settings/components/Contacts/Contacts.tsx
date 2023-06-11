@@ -1,13 +1,9 @@
+import FeatherIcon from 'feather-react'
 import { InputText } from 'primereact/inputtext'
-
-import { Message } from '@gitcv/components'
-
-import { useLocale } from '@gitcv/hooks'
 
 import {
     Container,
-    Header,
-    HeaderRow,
+    AddRow,
     ContactRow,
     ContactLabel,
     ContactContainer,
@@ -16,94 +12,58 @@ import {
 import useContacts from './useContacts'
 
 const Contacts = () => {
-    const { getMessage } = useLocale()
-
     const {
+        disabled,
         contacts,
+        key,
+        value,
+        setKey,
+        setValue,
         handleAdd,
-        handleAppend,
         handleChange,
         handleRemove,
-        isAppend,
-        setTempKey,
-        setTempValue,
-        tempKey,
-        tempValue,
     } = useContacts()
 
     return (
         <Container>
-            <Header>
-                <HeaderRow>
-                    {!isAppend && (
-                        <>
-                            <Button
-                                rounded
-                                text
-                                icon="pi pi-plus"
-                                severity="secondary"
-                                size="small"
-                                onClick={handleAdd}
-                            />
-                            <Message align="center">
-                                {getMessage('text.contacts')}
-                            </Message>
-                        </>
-                    )}
-                    {isAppend && (
-                        <>
-                            <Button
-                                rounded
-                                text
-                                icon="pi pi-check"
-                                severity="secondary"
-                                size="small"
-                                onClick={handleAppend}
-                            />
-                            <ContactContainer>
-                                <ContactLabel>Key</ContactLabel>
-                                <InputText
-                                    autoFocus
-                                    value={tempKey}
-                                    className="p-inputtext-sm w-14rem"
-                                    onChange={(e) => setTempKey(e.target.value)}
-                                />
-                            </ContactContainer>
-                            <ContactContainer>
-                                <ContactLabel>Value</ContactLabel>
-                                <InputText
-                                    value={tempValue}
-                                    className="p-inputtext-sm w-14rem"
-                                    onChange={(e) =>
-                                        setTempValue(e.target.value)
-                                    }
-                                />
-                            </ContactContainer>
-                        </>
-                    )}
-                </HeaderRow>
-            </Header>
-
-            {Object.keys(contacts).map((key) => (
-                <ContactRow key={key}>
-                    <Button
-                        size="small"
-                        icon="pi pi-times"
-                        rounded
-                        text
-                        severity="secondary"
-                        onClick={() => handleRemove(key)}
-                    />
+            {Object.keys(contacts).map((keyString) => (
+                <ContactRow key={keyString}>
+                    <Button onClick={() => handleRemove(keyString)}>
+                        <FeatherIcon name="x" />
+                    </Button>
                     <ContactContainer>
-                        <ContactLabel>{key}</ContactLabel>
+                        <ContactLabel>{keyString}</ContactLabel>
                         <InputText
-                            className="p-inputtext-sm w-28rem"
-                            value={contacts[key]}
-                            onChange={(e) => handleChange(key, e.target.value)}
+                            className="p-inputtext-sm"
+                            value={contacts[keyString]}
+                            onChange={(e) =>
+                                handleChange(keyString, e.target.value)
+                            }
                         />
                     </ContactContainer>
                 </ContactRow>
             ))}
+            <AddRow>
+                <Button type="button" onClick={handleAdd} disabled={disabled}>
+                    <FeatherIcon name="check" />
+                </Button>
+                <ContactContainer>
+                    <ContactLabel>Key</ContactLabel>
+                    <InputText
+                        value={key}
+                        className="p-inputtext-sm"
+                        onChange={(e) => setKey(e.target.value)}
+                    />
+                </ContactContainer>
+                <ContactContainer>
+                    <ContactLabel>Value</ContactLabel>
+                    <InputText
+                        value={value}
+                        className="p-inputtext-sm"
+                        onChange={(e) => setValue(e.target.value)}
+                    />
+                </ContactContainer>
+            </AddRow>
         </Container>
     )
 }

@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { HqCropper } from 'hq-cropper'
 
+import { Button } from 'primereact/button'
+
 import { useLocale } from '@gitcv/hooks'
 
-import { Container, Image, ChangeOverlay, Label } from './styled'
+import { Container, Image } from './styled'
 import { PhotoProps } from './types'
 
 // TODO: implement s3 uploading
@@ -18,11 +20,17 @@ const Photo = ({ value }: PhotoProps) => {
     const { current: hqCropper } = useRef(HqCropper(handleChange))
 
     return (
-        <Container onClick={hqCropper.open}>
+        <Container>
             <Image src={photo} />
-            <ChangeOverlay>
-                <Label>{getMessage('label.change')}</Label>
-            </ChangeOverlay>
+            <Button
+                text
+                type="button"
+                severity="secondary"
+                onClick={hqCropper.open}
+                size="small"
+            >
+                {getMessage('label.change')}
+            </Button>
         </Container>
     )
 }

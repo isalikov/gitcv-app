@@ -10,4 +10,6 @@ export const Content = styled.div`
     flex-direction: column;
     padding: 24px;
     gap: 12px;
+    max-width: 800px;
+    min-width: 600px;
 `

@@ -1,14 +1,10 @@
 import { PropsWithChildren } from 'react'
 
 import { Container, Text, Icon } from './styled'
-import { MessageProps } from './types'
 
-const Message = ({
-    children,
-    align = 'top',
-}: PropsWithChildren<MessageProps>) => {
+const Message = ({ children }: PropsWithChildren<unknown>) => {
     return (
-        <Container align={align}>
+        <Container>
             <Icon size={20} name="info" />
             <Text>{children}</Text>
         </Container>
