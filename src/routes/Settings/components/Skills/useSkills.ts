@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { Skill, UniqueArray } from '@isalikov/gitcv-api'
 
@@ -51,10 +51,6 @@ const useSkills = () => {
         INPUT_FORM_DEBOUNCE,
         !eq(user?.skills, value)
     )
-
-    useEffect(() => {
-        setValue(skills)
-    }, [skills])
 
     return { disabled, title, value, setTitle, handleAdd, handleRemove }
 }
