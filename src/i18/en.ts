@@ -8,6 +8,8 @@ const translations = {
     'label.edit': 'Editing',
     'label.preview': 'Preview',
     'label.sync': 'Sync with GitHub',
+    'label.title': 'Title',
+    'label.level': 'Level',
 
     'label.placeholder.select.repos': 'Select Repos',
     'label.placeholder.cv.title': 'Title',

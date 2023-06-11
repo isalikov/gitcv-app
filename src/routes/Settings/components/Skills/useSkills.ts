@@ -1,11 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Skill, UniqueArray } from '@isalikov/gitcv-api'
 
 import eq from 'fast-deep-equal'
 import { v4 as uuidV4 } from 'uuid'
 
-import { INPUT_FORM_DEBOUNCE } from '@gitcv/constants'
 import { useDebounceEffect, useUser } from '@gitcv/hooks'
 
 const useSkills = () => {
@@ -43,14 +42,28 @@ const useSkills = () => {
         }
     }
 
+    const handleKeyPress = (e: KeyboardEvent) => {
+        if (e.key === 'Enter' && !disabled) {
+            handleAdd()
+        }
+    }
+
     useDebounceEffect(
         () => {
             saveUser({ skills: value })
         },
         value,
-        INPUT_FORM_DEBOUNCE,
+        100,
         !eq(user?.skills, value)
     )
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress)
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress)
+        }
+    }, [handleKeyPress])
 
     return { disabled, title, value, setTitle, handleAdd, handleRemove }
 }

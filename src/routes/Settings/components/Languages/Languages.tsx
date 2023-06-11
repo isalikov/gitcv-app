@@ -1,17 +1,27 @@
 import FeatherIcon from 'feather-react'
 
+import { Dropdown } from 'primereact/dropdown'
 import { InputText } from 'primereact/inputtext'
 
 import { useLocale } from '@gitcv/hooks'
 
 import { Container, Row, Button, Title } from './styled'
-import useSkills from './useSkills'
+import useLanguages from './useLanguages'
 
-const Skills = () => {
+const Languages = () => {
     const { getMessage } = useLocale()
 
-    const { value, handleAdd, handleRemove, title, setTitle, disabled } =
-        useSkills()
+    const {
+        disabled,
+        handleAdd,
+        handleRemove,
+        level,
+        levels,
+        setLevel,
+        setTitle,
+        title,
+        value,
+    } = useLanguages()
 
     return (
         <Container>
@@ -32,13 +42,20 @@ const Skills = () => {
                 </Button>
                 <InputText
                     className="p-inputtext-sm"
-                    placeholder={getMessage('label.placeholder.skill')}
                     value={title}
+                    placeholder={getMessage('label.title')}
                     onChange={(e) => setTitle(e.target.value)}
+                />
+                <Dropdown
+                    className="p-inputtext-sm"
+                    placeholder={getMessage('label.level')}
+                    value={level}
+                    options={levels}
+                    onChange={(e) => setLevel(e.target.value)}
                 />
             </Row>
         </Container>
     )
 }
 
-export default Skills
+export default Languages

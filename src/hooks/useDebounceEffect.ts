@@ -11,7 +11,7 @@ const useDebounceEffect = (
     useEffect(() => {
         clearTimeout(timeout)
         if (condition) {
-            timeout = setTimeout(() => fn(), 1000)
+            timeout = setTimeout(() => fn(), debounce)
         }
     }, [values, condition])
 }
