@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 export const Container = styled(ScrollPanel)`
     height: 100vh;
+    border-right: 1px solid ${(props) => props.theme.colors.light};
 
     & .p-scrollpanel-bar-y {
         display: none;
@@ -13,7 +14,6 @@ export const Container = styled(ScrollPanel)`
 export const Content = styled.aside`
     display: flex;
     flex-direction: column;
-    border-right: 1px solid ${(props) => props.theme.colors.light};
 `
 
 export const AsideButton = styled.button<{ isActive?: boolean }>`

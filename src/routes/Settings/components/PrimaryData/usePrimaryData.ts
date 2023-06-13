@@ -55,6 +55,7 @@ const usePrimaryData = () => {
         handleChangePhoto,
         handleSync,
         syncing: syncState.pending,
+        repos: user?.repos?.length.toString() || '0',
     }
 }
 

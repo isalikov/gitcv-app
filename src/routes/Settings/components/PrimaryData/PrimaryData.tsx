@@ -1,15 +1,16 @@
 import { Button } from 'primereact/button'
+import { Chip } from 'primereact/chip'
 import { InputText } from 'primereact/inputtext'
 
 import { Message, Photo } from '@gitcv/components'
 import { useLocale } from '@gitcv/hooks'
 
-import { Container, Fields, Footer } from './styled'
+import { Container, Fields, Footer, ReposCounter } from './styled'
 import usePrimaryData from './usePrimaryData'
 
 const PrimaryData = () => {
     const { getMessage } = useLocale()
-    const { register, photo, handleChangePhoto, handleSync, syncing } =
+    const { register, repos, photo, handleChangePhoto, handleSync, syncing } =
         usePrimaryData()
 
     return (
@@ -28,6 +29,9 @@ const PrimaryData = () => {
                 />
                 <Message>{getMessage('text.settings')}</Message>
                 <Footer>
+                    <ReposCounter>
+                        <Chip label={repos} icon="pi pi-github" />
+                    </ReposCounter>
                     <Button
                         size="small"
                         icon="pi pi-github"

@@ -4,17 +4,27 @@ import { HqCropper } from 'hq-cropper'
 
 import { Button } from 'primereact/button'
 
-import { useLocale } from '@gitcv/hooks'
+import { useLocale, useUser } from '@gitcv/hooks'
+
+import upload from '@gitcv/services/upload'
 
 import { Container, Image } from './styled'
 import { PhotoProps } from './types'
 
-// TODO: implement s3 uploading
 const Photo = ({ value }: PhotoProps) => {
     const [photo, setPhoto] = useState(value)
     const { getMessage } = useLocale()
-    const handleChange = (base64: string) => {
+    const { saveUser } = useUser()
+
+    const [loading, setLoading] = useState(false)
+    const handleChange = async (base64: string, blob: Blob | null) => {
         setPhoto(base64)
+
+        setLoading(true)
+        const { url } = await upload(blob, (e) => console.log(e))
+
+        setLoading(false)
+        await saveUser({ photo: url })
     }
 
     const { current: hqCropper } = useRef(HqCropper(handleChange))
@@ -29,7 +39,7 @@ const Photo = ({ value }: PhotoProps) => {
                 onClick={hqCropper.open}
                 size="small"
             >
-                {getMessage('label.change')}
+                {loading ? 'loading' : getMessage('label.change')}
             </Button>
         </Container>
     )

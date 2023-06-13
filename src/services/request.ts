@@ -1,12 +1,10 @@
-import axios, { CreateAxiosDefaults } from 'axios'
+import axios from 'axios'
 
 const getSession = (): string => {
     return localStorage.getItem('session') || ''
 }
 
-const config = {
+export default axios.create({
     baseURL: process.env.API_HOST,
     headers: { session: getSession() },
-}
-
-export default axios.create(config as CreateAxiosDefaults)
+})

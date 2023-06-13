@@ -14,6 +14,14 @@ export const Fields = styled.div`
 
 export const Footer = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+`
+
+export const ReposCounter = styled.span`
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 13px;
+    gap: 6px;
 `

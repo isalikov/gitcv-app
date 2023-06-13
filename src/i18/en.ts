@@ -7,7 +7,7 @@ const translations = {
     'label.done': 'Done',
     'label.edit': 'Editing',
     'label.preview': 'Preview',
-    'label.sync': 'Sync with GitHub',
+    'label.sync': 'Sync',
     'label.title': 'Title',
     'label.level': 'Level',
 
