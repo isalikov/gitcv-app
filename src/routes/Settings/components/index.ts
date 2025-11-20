@@ -1,6 +1,0 @@
-export * from './Contacts'
-export * from './Languages'
-export * from './PrimaryData'
-export * from './Profile'
-export * from './Section'
-export * from './Skills'

@@ -1,18 +1,4 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "strictNullChecks": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-        "lib": ["es2019", "dom"],
-        "module": "commonjs",
-        "types": ["node"],
-        "allowSyntheticDefaultImports": true,
-        "typeRoots": ["./src/types"],
-        "baseUrl": ".",
-        "paths": {
-            "@gitcv/*": ["src/*"]
-        }
-    },
-    "exclude": ["node_modules", "dist"]
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }
