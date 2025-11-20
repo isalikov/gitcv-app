@@ -127,16 +127,31 @@ docker pull ghcr.io/isalikov/gitcv-app:v1.0.0
 
 - `VITE_API_URL` - Production API URL
 
+## Architecture
+
+The application uses a dual-app architecture:
+
+- **Landing** - Public landing page (unauthenticated)
+- **Dashboard** - Main application (requires authentication)
+
+On startup, the app checks authentication status by calling `/v1/me` with tokens from localStorage. If authenticated, Dashboard loads; otherwise, Landing loads.
+
+See [Authentication Flow](./docs/AUTH.md) for detailed documentation.
+
 ## Project Structure
 
 ```
 src/
 ├── apps/           # Application entry points
-│   ├── Dashboard/  # Dashboard app
-│   └── Landing/    # Landing app
+│   ├── Dashboard/  # Dashboard app (authenticated)
+│   └── Landing/    # Landing app (public)
 ├── lib/            # Shared libraries
-│   └── api.ts      # Axios instance
+│   └── api.ts      # Axios instance with auth interceptors
 ├── services/       # API services
+│   ├── auth.ts     # Authentication logic
+│   └── tokenStorage.ts  # Token management (localStorage)
+├── types/          # TypeScript types
+│   └── auth.ts     # Auth-related types
 ├── test/           # Test utilities and setup
-└── main.tsx        # Main entry point
+└── main.tsx        # App entry point (auth check)
 ```
