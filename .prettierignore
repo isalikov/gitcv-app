@@ -10,6 +10,10 @@ dist-ssr
 # Logs
 *.log
 
+# Environment variables
+.env*
+!.env.example
+
 # IDE
 .idea
 .vscode
