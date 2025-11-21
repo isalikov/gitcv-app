@@ -1,46 +1,106 @@
-import type { AxiosError } from 'axios';
+import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
-import api from '../lib/api';
+import { API_URL } from '../constants';
 import type { ApiError } from '../types/api';
-import type { MeResponse, RefreshTokenResponse } from '../types/auth';
+import type { MeApiResponse, MeResponse, RefreshTokenResponse } from '../types/auth';
 import { tokenStorage } from './tokenStorage';
 
-function isAxiosError(error: unknown): error is AxiosError<ApiError> {
+export const api = axios.create({
+  baseURL: API_URL + '/v1',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Request interceptor - add auth token from localStorage
+api.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const accessToken = localStorage.getItem('access_token');
+
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  },
+  (error: AxiosError) => {
+    return Promise.reject(error as Error);
+  },
+);
+
+// Response interceptor
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error: unknown) => {
+    // Handle errors globally
+    if (axios.isAxiosError(error)) {
+      if (error.response) {
+        // Server responded with error
+        console.error('API Error:', error.response.status, error.response.data);
+      } else if (error.request) {
+        // Request made but no response
+        console.error('Network Error:', error.message);
+      } else {
+        // Something else happened
+        console.error('Error:', error.message);
+      }
+    } else {
+      console.error('Unknown error:', error);
+    }
+    return Promise.reject(error as Error);
+  },
+);
+
+const isAxiosError = (error: unknown): error is AxiosError<ApiError> => {
   return (
     typeof error === 'object' &&
     error !== null &&
     'isAxiosError' in error &&
     error.isAxiosError === true
   );
-}
+};
 
 export const authService = {
   /**
    * Check authentication by calling /v1/me
-   * Returns true if authenticated, false otherwise
+   * Returns MeResponse if authenticated, null otherwise
    * Automatically tries to refresh token if access_token is expired
    */
-  async checkAuth(): Promise<boolean> {
+  async checkAuth(): Promise<MeResponse | null> {
     const tokens = tokenStorage.getTokens();
 
     // No tokens - user is not authenticated
     if (!tokens) {
-      return false;
+      return null;
     }
 
     try {
       // Try to fetch user data with current access_token
-      await api.get<MeResponse>('/me');
-      return true;
+      const response = await api.get<MeApiResponse>('/me');
+      return response.data.data; // Extract data from API wrapper
     } catch (error: unknown) {
       // If access_token is invalid/expired, try to refresh
       if (isAxiosError(error) && error.response?.status === 401) {
-        return await this.tryRefreshToken(tokens.refresh_token);
+        const refreshed = await this.tryRefreshToken(tokens.refresh_token);
+        if (refreshed) {
+          // Try to fetch user data again after successful refresh
+          try {
+            const response = await api.get<MeApiResponse>('/me');
+            return response.data.data; // Extract data from API wrapper
+          } catch (retryError: unknown) {
+            console.error('Auth check failed after token refresh:', retryError);
+            return null;
+          }
+        }
+
+        return null;
       }
 
       // Other errors - treat as not authenticated
       console.error('Auth check failed:', error);
-      return false;
+      return null;
     }
   },
 
@@ -53,7 +113,7 @@ export const authService = {
         refresh_token: refreshToken,
       });
 
-      // Save new access_token
+      // Save new access_token (response.data.data.access_token from API wrapper)
       const newAccessToken = response.data.data.access_token;
       tokenStorage.setAccessToken(newAccessToken);
 

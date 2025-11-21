@@ -1,14 +1,4 @@
-// PrimeReact styles
-// Core CSS
-import 'primeicons/primeicons.css';
-// Theme
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/lara-light-blue/theme.css';
-
-// Icons
-
-import BootDashboard from './apps/Dashboard/bootstrap';
-import BootLanding from './apps/Ladning/bootstrap';
+import { BootDashboard, BootLanding } from './apps';
 import { authService, tokenStorage } from './services';
 
 // Handle OAuth callback
@@ -46,10 +36,10 @@ async function initApp(): Promise<void> {
     return;
   }
 
-  const isAuthenticated = await authService.checkAuth();
+  const meData = await authService.checkAuth();
 
-  if (isAuthenticated) {
-    BootDashboard();
+  if (meData) {
+    BootDashboard(meData);
   } else {
     BootLanding();
   }

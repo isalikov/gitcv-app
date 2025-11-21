@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import type { ApiResponse, Repository, Resume } from '../types/api';
-import type { MeResponse } from '../types/auth';
+import type { ApiResponse, RefreshToken, Repository, Resume, Skill } from '../types/api';
+import type { MeApiResponse, MeResponse } from '../types/auth';
 import type {
   CreateResumeRequest,
   CreateSkillRequest,
@@ -10,32 +10,11 @@ import type {
   GeneratePDFRequest,
   GeneratePDFResponse,
   GetSkillsParams,
-  LogoutResponse,
   RevokeSessionRequest,
   UpdateMeRequest,
   UpdateResumeRequest,
 } from '../types/requests';
 import { axiosBaseQuery } from './baseQuery';
-
-interface Skill {
-  id: number;
-  name: string;
-  user_id: number | null;
-  created_at: string;
-  updated_at: string;
-}
-
-interface RefreshToken {
-  id: number;
-  user_id: number;
-  ip_address: string;
-  user_agent: string;
-  is_revoked: boolean;
-  expires_at: string;
-  last_used: string;
-  created_at: string;
-  updated_at: string;
-}
 
 /**
  * Protected API endpoints that require authentication
@@ -63,6 +42,7 @@ export const protectedApi = createApi({
         url: '/me',
         method: 'GET',
       }),
+      transformResponse: (response: MeApiResponse) => response.data,
       providesTags: ['Me'],
     }),
 
@@ -72,6 +52,7 @@ export const protectedApi = createApi({
         method: 'PATCH',
         data,
       }),
+      transformResponse: (response: MeApiResponse) => response.data,
       invalidatesTags: ['Me'],
     }),
 
@@ -80,6 +61,7 @@ export const protectedApi = createApi({
         url: '/me/sync',
         method: 'POST',
       }),
+      transformResponse: (response: MeApiResponse) => response.data,
       invalidatesTags: ['Me', 'Repositories'],
     }),
 
@@ -87,47 +69,51 @@ export const protectedApi = createApi({
     // Resumes (Protected)
     // ============================================================================
 
-    getResumes: builder.query<ApiResponse<Resume[]>, void>({
+    getResumes: builder.query<Resume[], void>({
       query: () => ({
         url: '/resumes',
         method: 'GET',
       }),
+      transformResponse: (response: ApiResponse<Resume[]>) => response.data,
       providesTags: (result) =>
         result
           ? [
-              ...result.data.map(({ id }) => ({ type: 'Resume' as const, id })),
+              ...result.map(({ id }) => ({ type: 'Resume' as const, id })),
               { type: 'Resumes' as const },
             ]
           : [{ type: 'Resumes' as const }],
     }),
 
-    getResume: builder.query<ApiResponse<Resume>, number>({
+    getResume: builder.query<Resume, number>({
       query: (id) => ({
         url: `/resumes/${id}`,
         method: 'GET',
       }),
+      transformResponse: (response: ApiResponse<Resume>) => response.data,
       providesTags: (_result, _error, id) => [{ type: 'Resume', id }],
     }),
 
-    createResume: builder.mutation<ApiResponse<Resume>, CreateResumeRequest>({
+    createResume: builder.mutation<Resume, CreateResumeRequest>({
       query: (data) => ({
         url: '/resumes',
         method: 'POST',
         data,
       }),
+      transformResponse: (response: ApiResponse<Resume>) => response.data,
       invalidatesTags: ['Resumes', 'Me'],
     }),
 
-    updateResume: builder.mutation<ApiResponse<Resume>, { id: number; data: UpdateResumeRequest }>({
+    updateResume: builder.mutation<Resume, { id: number; data: UpdateResumeRequest }>({
       query: ({ id, data }) => ({
         url: `/resumes/${id}`,
         method: 'PATCH',
         data,
       }),
+      transformResponse: (response: ApiResponse<Resume>) => response.data,
       invalidatesTags: (_result, _error, { id }) => [{ type: 'Resume', id }, 'Resumes', 'Me'],
     }),
 
-    deleteResume: builder.mutation<ApiResponse<null>, number>({
+    deleteResume: builder.mutation<void, number>({
       query: (id) => ({
         url: `/resumes/${id}`,
         method: 'DELETE',
@@ -135,38 +121,38 @@ export const protectedApi = createApi({
       invalidatesTags: (_result, _error, id) => [{ type: 'Resume', id }, 'Resumes', 'Me'],
     }),
 
-    generateResumePDF: builder.mutation<
-      GeneratePDFResponse,
-      { id: number; data: GeneratePDFRequest }
-    >({
+    generateResumePDF: builder.mutation<string, { id: number; data: GeneratePDFRequest }>({
       query: ({ id, data }) => ({
         url: `/resumes/${id}/pdf`,
         method: 'POST',
         data,
       }),
+      transformResponse: (response: GeneratePDFResponse) => response.download_url,
     }),
 
     // ============================================================================
     // AI Generation
     // ============================================================================
 
-    generateAbout: builder.mutation<GenerateAboutResponse, GenerateAboutRequest>({
+    generateAbout: builder.mutation<string, GenerateAboutRequest>({
       query: (data) => ({
         url: '/generate',
         method: 'POST',
         data,
       }),
+      transformResponse: (response: GenerateAboutResponse) => response.data.about,
     }),
 
     // ============================================================================
     // Repositories
     // ============================================================================
 
-    syncRepository: builder.mutation<ApiResponse<Repository>, number>({
+    syncRepository: builder.mutation<Repository, number>({
       query: (github_id) => ({
         url: `/repositories/${github_id}/sync`,
         method: 'POST',
       }),
+      transformResponse: (response: ApiResponse<Repository>) => response.data,
       invalidatesTags: ['Repositories', 'Me'],
     }),
 
@@ -174,21 +160,23 @@ export const protectedApi = createApi({
     // Skills
     // ============================================================================
 
-    getSkills: builder.query<ApiResponse<Skill[]>, GetSkillsParams | void>({
+    getSkills: builder.query<Skill[], GetSkillsParams | void>({
       query: (params) => ({
         url: '/skills',
         method: 'GET',
         params,
       }),
+      transformResponse: (response: ApiResponse<Skill[]>) => response.data,
       providesTags: ['Skills'],
     }),
 
-    createSkill: builder.mutation<ApiResponse<Skill>, CreateSkillRequest>({
+    createSkill: builder.mutation<Skill, CreateSkillRequest>({
       query: (data) => ({
         url: '/skills',
         method: 'POST',
         data,
       }),
+      transformResponse: (response: ApiResponse<Skill>) => response.data,
       invalidatesTags: ['Skills'],
     }),
 
@@ -196,15 +184,17 @@ export const protectedApi = createApi({
     // Sessions
     // ============================================================================
 
-    getSessions: builder.query<ApiResponse<{ sessions: RefreshToken[] }>, void>({
+    getSessions: builder.query<RefreshToken[], void>({
       query: () => ({
         url: '/sessions',
         method: 'GET',
       }),
+      transformResponse: (response: ApiResponse<{ sessions: RefreshToken[] }>) =>
+        response.data.sessions,
       providesTags: ['Sessions'],
     }),
 
-    revokeSession: builder.mutation<LogoutResponse, RevokeSessionRequest>({
+    revokeSession: builder.mutation<void, RevokeSessionRequest>({
       query: (data) => ({
         url: '/sessions/revoke',
         method: 'POST',

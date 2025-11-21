@@ -11,11 +11,14 @@ export interface User {
   email: string;
   github_id: number;
   avatar_url: string;
+  bio: string;
+  name: string;
   created_at: string;
   updated_at: string;
 }
 
-export interface MeResponse {
+// API response from backend
+export interface MeApiResponse {
   success: boolean;
   message: string;
   data: {
@@ -23,6 +26,13 @@ export interface MeResponse {
     repositories: Repository[];
     resumes: Resume[];
   };
+}
+
+// Transformed data stored in RTK Query cache (without API wrappers)
+export interface MeResponse {
+  user: User;
+  repositories: Repository[];
+  resumes: Resume[];
 }
 
 export interface RefreshTokenResponse {

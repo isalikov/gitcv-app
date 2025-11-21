@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import type { ApiResponse, Resume } from '../types/api';
 import type { RefreshTokenResponse } from '../types/auth';
-import type { LogoutRequest, LogoutResponse, RefreshTokenRequest } from '../types/requests';
+import type { LogoutRequest, RefreshTokenRequest } from '../types/requests';
 import { axiosBaseQuery } from './baseQuery';
 
 /**
@@ -24,26 +24,28 @@ export const publicApi = createApi({
     // Health Check
     // ============================================================================
 
-    healthCheck: builder.query<ApiResponse<{ status: string }>, void>({
+    healthCheck: builder.query<{ status: string }, void>({
       query: () => ({
         url: '/v1/healthcheck',
         method: 'GET',
       }),
+      transformResponse: (response: ApiResponse<{ status: string }>) => response.data,
     }),
 
     // ============================================================================
     // Authentication (Public)
     // ============================================================================
 
-    refreshToken: builder.mutation<RefreshTokenResponse, RefreshTokenRequest>({
+    refreshToken: builder.mutation<string, RefreshTokenRequest>({
       query: (data) => ({
         url: '/auth/refresh',
         method: 'POST',
         data,
       }),
+      transformResponse: (response: RefreshTokenResponse) => response.data.access_token,
     }),
 
-    logout: builder.mutation<LogoutResponse, LogoutRequest>({
+    logout: builder.mutation<void, LogoutRequest>({
       query: (data) => ({
         url: '/auth/logout',
         method: 'POST',
@@ -55,11 +57,12 @@ export const publicApi = createApi({
     // Public Resumes
     // ============================================================================
 
-    getPublicResume: builder.query<ApiResponse<Resume>, string>({
+    getPublicResume: builder.query<Resume, string>({
       query: (slug) => ({
         url: `/public/resumes/${slug}`,
         method: 'GET',
       }),
+      transformResponse: (response: ApiResponse<Resume>) => response.data,
     }),
   }),
 });

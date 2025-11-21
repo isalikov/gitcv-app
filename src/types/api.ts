@@ -81,6 +81,26 @@ export interface ApiResponse<T> {
   data: T;
 }
 
+export interface Skill {
+  id: number;
+  name: string;
+  user_id: number | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface RefreshToken {
+  id: number;
+  user_id: number;
+  ip_address: string;
+  user_agent: string;
+  is_revoked: boolean;
+  expires_at: string;
+  last_used: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ApiError {
   success: false;
   message: string;

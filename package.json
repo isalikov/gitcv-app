@@ -19,10 +19,10 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@reduxjs/toolkit": "^2.10.1",
     "axios": "^1.13.2",
-    "primeicons": "^7.0.0",
-    "primereact": "^10.9.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0"
