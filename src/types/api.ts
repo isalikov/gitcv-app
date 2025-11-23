@@ -1,4 +1,4 @@
-export interface Repository {
+export type Repository = {
   id: number;
   user_id: number;
   github_id: number;
@@ -25,18 +25,18 @@ export interface Repository {
   github_pushed_at: string;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface Education {
+export type Education = {
   institution: string;
   degree: string;
   field: string;
   start_date: string;
   end_date: string;
   description: string;
-}
+};
 
-export interface WorkExperience {
+export type WorkExperience = {
   company: string;
   position: string;
   location: string;
@@ -44,14 +44,14 @@ export interface WorkExperience {
   end_date: string;
   description: string;
   technologies: string[];
-}
+};
 
-export interface LanguageSkill {
+export type LanguageSkill = {
   language: string;
   level: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2' | 'Native';
-}
+};
 
-export interface Resume {
+export type Resume = {
   id: number;
   user_id: number;
   title: string;
@@ -73,23 +73,23 @@ export interface Resume {
   is_public: boolean;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface ApiResponse<T> {
+export type ApiResponse<T> = {
   success: boolean;
   message: string;
   data: T;
-}
+};
 
-export interface Skill {
+export type Skill = {
   id: number;
   name: string;
   user_id: number | null;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface RefreshToken {
+export type RefreshToken = {
   id: number;
   user_id: number;
   ip_address: string;
@@ -99,10 +99,10 @@ export interface RefreshToken {
   last_used: string;
   created_at: string;
   updated_at: string;
-}
+};
 
-export interface ApiError {
+export type ApiError = {
   success: false;
   message: string;
   error: string;
-}
+};

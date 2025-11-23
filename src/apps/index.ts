@@ -1,2 +1,2 @@
 export * from './Dashboard';
-export * from './Ladning';
+export * from './Landing';

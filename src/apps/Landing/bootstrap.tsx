@@ -1,9 +1,10 @@
+import { publicStore } from '@store';
+
 import { StrictMode } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import { publicStore } from '../../store';
 import { Landing } from './Landing';
 
 const bootstrap = (): void => {

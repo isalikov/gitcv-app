@@ -1,6 +1,7 @@
+import type { AuthTokens } from '@types';
+
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { AuthTokens } from '../../types/auth';
 import { tokenStorage } from '../tokenStorage';
 
 describe('tokenStorage', () => {

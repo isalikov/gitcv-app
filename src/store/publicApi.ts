@@ -1,8 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
+import type {
+  ApiResponse,
+  LogoutRequest,
+  RefreshTokenRequest,
+  RefreshTokenResponse,
+  Resume,
+} from '@types';
 
-import type { ApiResponse, Resume } from '../types/api';
-import type { RefreshTokenResponse } from '../types/auth';
-import type { LogoutRequest, RefreshTokenRequest } from '../types/requests';
 import { axiosBaseQuery } from './baseQuery';
 
 /**

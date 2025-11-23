@@ -9,7 +9,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
@@ -24,7 +24,20 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Path aliases */
+    "baseUrl": "./src",
+    "paths": {
+      "@apps/*": ["apps/*"],
+      "@apps": ["apps"],
+      "@services/*": ["services/*"],
+      "@services": ["services"],
+      "@store/*": ["store/*"],
+      "@store": ["store"],
+      "@types/*": ["types/*"],
+      "@types": ["types"]
+    }
   },
   "include": ["src", "vitest.setup.ts"]
 }

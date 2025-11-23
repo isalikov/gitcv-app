@@ -1,11 +1,10 @@
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
+import { tokenStorage } from '@services';
+import { api } from '@services/auth';
+import type { ApiError, RefreshTokenResponse } from '@types';
 
 import type { AxiosError } from 'axios';
 
-import { tokenStorage } from '../services';
-import { api } from '../services/auth';
-import type { ApiError } from '../types/api';
-import type { RefreshTokenResponse } from '../types/auth';
 import type { BaseQueryArgs } from './types';
 
 export const axiosBaseQuery =

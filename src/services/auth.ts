@@ -1,8 +1,8 @@
+import type { ApiError, MeApiResponse, MeResponse, RefreshTokenResponse } from '@types';
+
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
 import { API_URL } from '../constants';
-import type { ApiError } from '../types/api';
-import type { MeApiResponse, MeResponse, RefreshTokenResponse } from '../types/auth';
 import { tokenStorage } from './tokenStorage';
 
 export const api = axios.create({

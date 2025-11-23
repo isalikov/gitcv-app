@@ -1,11 +1,11 @@
 import type { Repository, Resume } from './api';
 
-export interface AuthTokens {
+export type AuthTokens = {
   access_token: string;
   refresh_token: string;
-}
+};
 
-export interface User {
+export type User = {
   id: number;
   username: string;
   email: string;
@@ -15,10 +15,9 @@ export interface User {
   name: string;
   created_at: string;
   updated_at: string;
-}
+};
 
-// API response from backend
-export interface MeApiResponse {
+export type MeApiResponse = {
   success: boolean;
   message: string;
   data: {
@@ -26,19 +25,18 @@ export interface MeApiResponse {
     repositories: Repository[];
     resumes: Resume[];
   };
-}
+};
 
-// Transformed data stored in RTK Query cache (without API wrappers)
-export interface MeResponse {
+export type MeResponse = {
   user: User;
   repositories: Repository[];
   resumes: Resume[];
-}
+};
 
-export interface RefreshTokenResponse {
+export type RefreshTokenResponse = {
   success: boolean;
   message: string;
   data: {
     access_token: string;
   };
-}
+};

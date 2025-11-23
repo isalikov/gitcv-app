@@ -1,7 +1,6 @@
 import type { Education, LanguageSkill, WorkExperience } from './api';
 
-// Auth requests
-export interface LoginResponse {
+export type LoginResponse = {
   success: boolean;
   message: string;
   data: {
@@ -17,29 +16,27 @@ export interface LoginResponse {
       updated_at: string;
     };
   };
-}
+};
 
-export interface RefreshTokenRequest {
+export type RefreshTokenRequest = {
   refresh_token: string;
-}
+};
 
-export interface LogoutRequest {
+export type LogoutRequest = {
   refresh_token: string;
-}
+};
 
-export interface LogoutResponse {
+export type LogoutResponse = {
   success: boolean;
   message: string;
-}
+};
 
-// User/Me requests
-export interface UpdateMeRequest {
+export type UpdateMeRequest = {
   email?: string;
   avatar_url?: string;
-}
+};
 
-// Resume requests
-export interface CreateResumeRequest {
+export type CreateResumeRequest = {
   title: string;
   full_name: string;
   email?: string;
@@ -57,9 +54,9 @@ export interface CreateResumeRequest {
   work_experience?: WorkExperience[];
   slug?: string;
   is_public?: boolean;
-}
+};
 
-export interface UpdateResumeRequest {
+export type UpdateResumeRequest = {
   title?: string;
   full_name?: string;
   email?: string;
@@ -77,43 +74,40 @@ export interface UpdateResumeRequest {
   work_experience?: WorkExperience[];
   slug?: string;
   is_public?: boolean;
-}
+};
 
-export interface GeneratePDFRequest {
+export type GeneratePDFRequest = {
   template?: 'modern' | 'classic' | 'minimal';
-}
+};
 
-export interface GeneratePDFResponse {
+export type GeneratePDFResponse = {
   success: boolean;
   message: string;
   download_url: string;
-}
+};
 
-// AI Generation requests
-export interface GenerateAboutRequest {
+export type GenerateAboutRequest = {
   repository_ids: number[];
   job_description?: string;
   user_note?: string;
-}
+};
 
-export interface GenerateAboutResponse {
+export type GenerateAboutResponse = {
   success: boolean;
   message: string;
   data: {
     about: string;
   };
-}
+};
 
-// Skills requests
-export interface CreateSkillRequest {
+export type CreateSkillRequest = {
   name: string;
-}
+};
 
-export interface GetSkillsParams {
+export type GetSkillsParams = {
   q?: string;
-}
+};
 
-// Sessions
-export interface RevokeSessionRequest {
+export type RevokeSessionRequest = {
   refresh_token: string;
-}
+};

@@ -1,6 +1,7 @@
+import { tokenStorage } from '@services';
+
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { tokenStorage } from '../../services';
 import { axiosBaseQuery } from '../baseQuery';
 
 // Hoist mock api creation

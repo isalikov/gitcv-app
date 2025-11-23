@@ -1,6 +1,7 @@
+import type { MeApiResponse, MeResponse } from '@types';
+
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { MeApiResponse, MeResponse } from '../../types/auth';
 // Import authService after mocking
 import { authService } from '../auth';
 import { tokenStorage } from '../tokenStorage';

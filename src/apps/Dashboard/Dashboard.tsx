@@ -1,10 +1,7 @@
-import { useGetMeQuery } from '../../store';
+import { RouterProvider } from '@tanstack/react-router';
+
+import { router } from './router';
 
 export const Dashboard = () => {
-  const { data } = useGetMeQuery();
-  if (!data) {
-    return null;
-  }
-
-  return <div>{data.user.username}</div>;
+  return <RouterProvider router={router} />;
 };
